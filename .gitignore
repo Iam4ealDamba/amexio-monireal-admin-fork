@@ -44,6 +44,7 @@ nuxeo-admin-console-web/angular-app/src/environments
 *.angular
 *dist
 *.idea
+*node/
 
 ### Files ###
 .env
