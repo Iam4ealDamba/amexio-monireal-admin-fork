@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<component name="fr.amexio.monireal.monireal-management-probes-contrib">
+
+    <extension target="org.nuxeo.ecm.core.management.CoreManagementComponent" point="probes">
+        <!--
+        You might find some help here:
+        https://explorer.nuxeo.com/nuxeo/site/distribution/latest/viewExtensionPoint/org.nuxeo.ecm.core.management.CoreManagementComponent%2d%2dprobes
+        -->
+        <!-- S3 Probe -->
+        <probe class="org.nuxeo.ecm.core.storage.status.S3BinaryManagerStatusProbe" name="s3BinaryManagerStatus">
+            <label>S3BinaryManager probe</label>
+        </probe>
+        <!-- Administrative Status Probe -->
+        <probe class="org.nuxeo.ecm.core.management.probes.AdministrativeStatusProbe" name="administrativeStatus">
+            <label>Local Instance availability</label>
+            <description>Test if local Nuxeo Instance is available</description>
+        </probe>
+        <!-- Runtime Status Probe -->
+        <probe class="org.nuxeo.ecm.core.management.statuses.RuntimeStartedProbe" name="runtimeStatus">
+            <label>Runtime started probe</label>
+            <description>Test if the runtime is started or not</description>
+        </probe>
+        <!-- Repository Status Probe -->
+        <probe class="org.nuxeo.ecm.core.management.statuses.RepositoryStatusProbe" name="repositoryStatus">
+            <label>Repository started probe</label>
+            <description>Test the repository by fetching the root document</description>
+        </probe>
+        <!-- LDAP Probes -->
+        <probe class="org.nuxeo.ecm.directory.ldap.management.LDAPDirectoriesProbe" name="ldapDirectories">
+            <label>LDAP probe</label>
+            <description>Test access on each declared LDAP Directory</description>
+        </probe>
+        <!-- ElasticSearch Probe -->
+        <probe class="org.nuxeo.elasticsearch.status.ElasticSearchStatusProbe" name="elasticSearchStatus">
+            <label>Elastic Search probe</label>
+        </probe>
+        <!-- Stream Probe -->
+        <probe class="org.nuxeo.runtime.stream.StreamProbe" name="streamStatus">
+            <label>Stream probe</label>
+        </probe>
+        <!-- SQL Storage Probe -->
+        <probe class="org.nuxeo.ecm.core.storage.sql.management.RemoteSessionsProbe" name="remoteSQLStorageSessions">
+            <label>Remote SQL sessions</label>
+        </probe>
+        <!-- SQL Storage Probe -->
+        <probe class="org.nuxeo.ecm.core.storage.sql.management.ActiveSessionsProbe" name="activeRepositorySessions">
+            <label>Active (local) SQL sessions</label>
+        </probe>
+    </extension>
+
+</component>

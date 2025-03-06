@@ -1,0 +1,62 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>fr.amexio.monireal</groupId>
+        <artifactId>amexio-monireal-admin</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>amexio-monireal-admin-package</artifactId>
+    <packaging>zip</packaging>
+    <name>Amexio Monireal Admin Package</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.nuxeo.ecm.distribution</groupId>
+            <artifactId>nuxeo-nxr-server</artifactId>
+            <type>zip</type>
+            <scope>provided</scope>
+            <version>2023.22.13</version>
+        </dependency>
+
+        <!-- Additional bundles to be deployed by the MP -->
+        <dependency>
+            <groupId>fr.amexio.monireal</groupId>
+            <artifactId>amexio-monireal-admin-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>fr.amexio.monireal</groupId>
+            <artifactId>nuxeo-admin-console-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <!-- Define the pluggin version in the parent POM -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.nuxeo.build</groupId>
+                    <artifactId>ant-assembly-maven-plugin</artifactId>
+                    <version>2.1.6</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <!-- Define the plugin goals in the parent or Child POM -->
+        <plugins>
+            <plugin>
+                <groupId>org.nuxeo.build</groupId>
+                <artifactId>ant-assembly-maven-plugin</artifactId>
+                <version>2.1.6</version>
+                <configuration>
+                    <buildFiles>
+                        <buildFile>${basedir}/src/main/assemble/assembly.xml</buildFile>
+                    </buildFiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

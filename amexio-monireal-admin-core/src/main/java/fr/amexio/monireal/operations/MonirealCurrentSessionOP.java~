@@ -1,0 +1,47 @@
+package fr.amexio.monireal.operations;
+
+import fr.amexio.monireal.constants.MonirealConstants;
+import org.apache.commons.lang3.StringUtils;
+import org.json.JSONObject;
+import org.nuxeo.ecm.automation.core.Constants;
+import org.nuxeo.ecm.automation.core.annotations.Context;
+import org.nuxeo.ecm.automation.core.annotations.Operation;
+import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
+import org.nuxeo.ecm.automation.core.annotations.Param;
+import org.nuxeo.ecm.core.api.*;
+import org.nuxeo.ecm.core.api.impl.blob.JSONBlob;
+import org.nuxeo.runtime.api.Framework;
+
+/**
+ *
+ */
+@Operation(id = MonirealCurrentSessionOP.ID, category = MonirealConstants.MONIREAL, label = "Monireal Get Current Session", description = "Get the current session from Nuxeo")
+public class MonirealCurrentSessionOP {
+
+  public static final String ID = "Monireal.CurrentSessionOP";
+
+  @Context
+  protected CoreSession session;
+
+  @Context
+  NuxeoPrincipal principal;
+
+
+  @OperationMethod
+  public Blob run() {
+    JSONObject user = new JSONObject();
+    user.put("username", principal.getName());
+    user.put("firstname", principal.getFirstName());
+    user.put("lastname", principal.getLastName());
+    user.put("company", principal.getCompany());
+    user.put("roles", principal.getRoles());
+    user.put("groups", principal.getGroups());
+    user.put("isAdmin", principal.isAdministrator());
+
+    JSONObject json = new JSONObject();
+    json.put("user", principal);
+    json.put("origin", Framework.getProperty("nuxeo.url"));
+
+    return new JSONBlob(json.toString());
+  }
+}

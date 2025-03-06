@@ -1,0 +1,65 @@
+<section class="tab-content">
+    <section label="unload-content" class="flex w-full h-full text-center items-center justify-center"
+             *ngIf="this.isLoading">
+        <div label="loading-page" class="flex items-center justify-center gap-x-6 text-center">
+            <h3 class="mb-0">Loading data</h3>
+            <div class="flex items-center justify-center w-6 h-6">
+                <mat-progress-spinner mode="indeterminate">
+                </mat-progress-spinner>
+            </div>
+        </div>
+    </section>
+    <app-no-data text="Sorry, no user sessions was retireve, please try later..." *ngIf="!this.sessions.length" class="flex-1"></app-no-data>
+    <section class="flex flex-col gap-y-10" *ngIf="!this.isLoading && this.sessions.length">
+        <div class="space-y-8">
+            <div label="title">
+                <h1>{{ this.title }}</h1>
+                <h3>{{ this.description }}</h3>
+            </div>
+            <div class="flex mx-auto items-center justify-between max-w-[800px]">
+                <div label="card" class="card">
+                    <h5><u>Active Sessions</u></h5>
+                    <p>{{ this.sessionCount }} connected</p>
+                </div>
+                <div label="card" class="card">
+                    <h5><u>Total HTTP Requests</u></h5>
+                    <p>{{ this.httpRequestCount > 1 ? this.httpRequestCount + " calls" : this.httpRequestCount + " call" }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="space-y-8">
+            <div label="top" class="flex w-full justify-between items-center">
+                <h6 class="font-semibold">All Active Sessions (1)</h6>
+                <form [formGroup]="this.formGroup" (ngSubmit)="handleSubmitSearch()" >
+                    <input type="search" placeholder="Search here..." formControlName="search"/>
+                </form>
+            </div>
+            <div class="table-div">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Inactivity Times</th>
+                        <th>Consulted Pages</th>
+                        <th>Session Duration</th>
+                        <th>Last Activity</th>
+                        <th>Last Visit</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let session of this.sessions | paginate: { itemsPerPage: 5, currentPage: 1 }"
+                        class="py-4">
+                        <td>{{ session.loginName }}</td>
+                        <td>{{ session.inactivityAsString }}</td>
+                        <td>{{ session.accessedPagesCount }}</td>
+                        <td>{{ session.durationAsString }}</td>
+                        <td>{{ session.inactivityAsString }}</td>
+                        <td [title]="session.lastAccessUrl">{{ session.lastAccessUrl.length > 25 ? session.lastAccessUrl.slice(0, 25) + '...' : session.lastAccessUrl }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pagination-controls (pageChange)="this.currentPage = $event"/>
+            </div>
+        </div>
+    </section>
+</section>

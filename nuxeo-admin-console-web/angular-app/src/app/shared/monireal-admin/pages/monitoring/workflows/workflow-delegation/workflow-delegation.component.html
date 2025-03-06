@@ -1,0 +1,55 @@
+<section class="modal-delegate">
+    <div class="w-full max-w-[800px] space-y-6 p-8 bg-tw-text-white">
+        <div class="" aria-label="title">
+            <h3>Delegation of task</h3>
+            <p class="text-sm font-semibold">Selected tasks: {{ this.$taskList.length }}</p>
+        </div>
+        <div class="space-y-6">
+            <div aria-label="top" class="space-y-4">
+                <p class="text-sm font-semibold">Please select the users you want to delegate the selected
+                    tasks:</p>
+                <div class="space-y-6">
+                    <form [formGroup]="this.userSearchGroup" (ngSubmit)="this.handleSearchUsersByName()"
+                    >
+                        <div class="relative flex flex-col">
+                            <input type="search"
+                                   class="w-full h-10 px-4 py-2 border-black/15 box-shadow-md focus:outline-none"
+                                   placeholder="Search for users here..." formControlName="search">
+                            <div *ngIf="this.userSearchGroup.value?.search.length >= 3"
+                                 class="card-autocompletion">
+
+                                <p *ngFor="let user of this.searchUsers"
+                                   (click)="handleAddUser(user)">
+                                    {{ user }}</p>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="space-y-2">
+                        <p class="text-sm font-semibold">User selected list:</p>
+                        <div class="w-full h-[130px] p-4 flex flex-wrap gap-4 border-black/15 box-shadow-md focus:outline-none overflow-y-auto">
+                            <div class="card-username" *ngFor="let username of this.userList"
+                                 (click)="handleRemoveUser(username)">
+                                <p>{{ username }}</p>
+                                <ng-icon name="matCancel" class="mr-0 text-tw-danger"></ng-icon>
+                            </div>
+                            <p *ngIf="!this.userList.length" class="text-sm text-tw-text-black/35">User list are
+                                empty.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div label="buttons" class="flex items-center justify-end gap-x-4">
+                <button class="flex items-center justify-center button-regular"
+                        (click)="this.handleReturn()">
+                    <ng-icon name="matKeyboardReturn"></ng-icon>
+                    <p>Return</p>
+                </button>
+                <button class="flex items-center justify-center {{this.userList.length ? 'button-primary' : 'button-inactive'}}"
+                        (click)="this.handleDelegation()" [disabled]="!this.userList.length">
+                    <ng-icon name="matCheck"></ng-icon>
+                    <p>Execute</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>

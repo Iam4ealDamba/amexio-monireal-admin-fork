@@ -1,0 +1,14 @@
+{
+  "generator-nuxeo": {
+    "lastRemote": "C:\\Users\\JordiNGWEBO-DAMBA\\.cache\\node-yeoman-remote-cache\\nuxeo\\generator-nuxeo-meta\\stable",
+    "promptValues": {
+      "nuxeo_version": "2023.22.13",
+      "parent_package": "fr.amexio.monireal",
+      "parent_artifact": "amexio-monireal-admin",
+      "parent_version": "1.0-SNAPSHOT",
+      "package": "fr.amexio.monireal.operations"
+    },
+    "_nuxeo_version": "2023.22.13",
+    "multi": true
+  }
+}

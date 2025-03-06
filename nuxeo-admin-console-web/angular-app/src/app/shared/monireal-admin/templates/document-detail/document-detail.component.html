@@ -1,0 +1,56 @@
+<section aria-label="tab-sub-content" class="sub-content">
+    <app-no-data *ngIf="!this.isLoading && !this.documentDetail.id"></app-no-data>
+    <section *ngIf="!this.isLoading && this.documentDetail.id"
+             class="flex justify-between items-center bg-transparent p-4">
+        <div label="title">
+            <h1>{{ this.title }}</h1>
+            <h3>{{ this.description }}</h3>
+        </div>
+        <div>
+            <app-monireal-button-component title="Return Back" icon="matArrowBack"
+                                           (click)="this.handleHideTemplate()"></app-monireal-button-component>
+        </div>
+    </section>
+    <div *ngIf="!this.isLoading && this.documentDetail.id" class="flex justify-between items-center">
+        <div class="w-full flex-1">
+            <h3 class="!font-semibold">Title - {{ this.documentDetail.title }}</h3>
+            <h4>ID - {{ this.documentDetail.id }}</h4>
+        </div>
+        <div>
+            <app-monireal-link-button-component title="Go to doc" icon="matOpenInNew" url="{{this.documentDetail.path}}"
+                                                buttonStyle="button-primary"
+                                                [externalLink]="true"></app-monireal-link-button-component>
+        </div>
+    </div>
+    <section class="flex w-full">
+        <div class="w-full flex-1">
+        </div>
+        <div class="w-full max-w-[380px] space-y-6 px-4 py-8 bg-tw-text-white shadow-md shadow-tw-text-black/30">
+            <div aria-label="top">
+                <h4 class="text-center !font-semibold">Document detail</h4>
+            </div>
+            <ul aria-label="bottom" class="">
+                <li>
+                    <h5>Creator</h5>
+                    <p>{{ this.documentDetail.creator }}</p>
+                </li>
+                <li>
+                    <h5>Created</h5>
+                    <p>{{ this.documentDetail.created | date:'dd/MM/yyyy' }}</p>
+                </li>
+                <li>
+                    <h5>Modified</h5>
+                    <p>{{ this.documentDetail.modified | date:'dd/MM/yyyy' }}</p>
+                </li>
+                <li>
+                    <h5>State</h5>
+                    <p>{{ this.documentDetail.state }}</p>
+                </li>
+                <li>
+                    <h5>Type</h5>
+                    <p>{{ this.documentDetail.type }}</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+</section>

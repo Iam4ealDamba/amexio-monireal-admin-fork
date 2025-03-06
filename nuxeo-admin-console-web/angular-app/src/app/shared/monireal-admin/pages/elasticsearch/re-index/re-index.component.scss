@@ -1,0 +1,29 @@
+@import "../../../styles/monireal-style";
+
+.tab-content {
+  @apply flex flex-col gap-y-8;
+
+  & > div {
+    @apply p-4 bg-tw-text-white shadow-sm;
+  }
+
+  .query-div {
+    @apply flex flex-col gap-y-4 mt-4;
+  }
+
+  h4 {
+    @apply font-semibold text-lg;
+  }
+
+  h5 {
+    @apply text-sm text-tw-text-black/65;
+  }
+
+  input[type="text"] {
+    @apply w-full px-4 h-10 bg-tw-text-black/10;
+  }
+
+  .request-card {
+    @apply space-y-4 shadow-tw-text-black/30 shadow-md;
+  }
+}

@@ -1,0 +1,43 @@
+meta {
+  name: Count indexes
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{url}}/site/es/nuxeo/_search
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: text/html
+}
+
+body:json {
+  {
+    "query": {
+      "match_all": {}
+    }
+  }
+}
+
+body:form-urlencoded {
+  ~nxql: '''
+    {
+      "analyzer" : "fulltext",
+      "text" : "This is a text for testing, file_name/1-foos-BAR.jpg"
+    }'
+    
+    To test an analyzer derived from the mapping:
+    
+    curl -s -X GET "localhost:9200/nuxeo/_analyze" -H 'Content-Type: application/json' -d' {
+      "field" : "ecm:path.children",
+      "text" : "workspaces/main folder/sub-folder"
+    }'
+    
+    Viewing Indexed Terms for Document Field
+    
+    This can be done using tool like Luke to analyze at the Lucene index level. It is also possible to use aggregate on fields that are not text or text with fielddata option:
+  '''
+}

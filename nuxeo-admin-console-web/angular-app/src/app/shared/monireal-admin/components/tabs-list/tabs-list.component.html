@@ -1,0 +1,9 @@
+<div aria-label="tabs" class="tabs">
+    <div
+            *ngFor="let item of tabs"
+            aria-label="tab content"
+            class="tab-content {{ currentTab === item.id ? 'tab-active' : '' }}"
+    >
+        <button (click)="sendCurrentTab(item.id)">{{ item.name }}</button>
+    </div>
+</div>

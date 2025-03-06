@@ -1,0 +1,14 @@
+@import "../../styles/monireal-style";
+
+.tabs {
+  @apply flex items-center w-full gap-x-6 text-sm mb-4;
+}
+
+.tab-content {
+  @apply flex pb-1 font-bold text-tw-text-black/65;
+}
+
+.tab-content.tab-active {
+  display: flex;
+  @apply border-b-2 border-b-tw-primary text-tw-text-black;
+}

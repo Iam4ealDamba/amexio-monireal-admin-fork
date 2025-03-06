@@ -1,0 +1,22 @@
+@import "../../../styles/monireal-style";
+
+.tab-content {
+  @apply flex flex-col gap-y-4;
+
+  & > div {
+    @apply p-4 bg-tw-text-white shadow-sm;
+  }
+}
+
+.table {
+  tr td {
+    @apply py-3 border-b-2 border-tw-text-black/10;
+  }
+  tr:last-child {
+    @apply border-none;
+  }
+}
+
+.ngx-pagination {
+  margin: 0 !important;
+}
