@@ -1,0 +1,21 @@
+@import "../../../../styles/monireal-style";
+
+.card-username {
+  @apply cursor-pointer pl-4 pr-1 h-8 gap-x-4 text-center flex items-center justify-between text-sm box-shadow-md rounded-full;
+}
+
+.modal-delegate {
+  @apply fixed w-[100vw] h-[100vh] top-0 left-0 m-0 bg-tw-text-black/45 flex justify-center items-center #{!important};
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  .card-autocompletion {
+    @apply absolute top-[43px] w-full max-h-[200px] flex flex-col p-2.5 gap-2.5 border-2 overflow-y-auto bg-tw-text-white;
+
+    p {
+      @apply cursor-pointer w-full h-6 px-2.5 bg-tw-text-white transition-all hover:brightness-[.85];
+    }
+  }
+}

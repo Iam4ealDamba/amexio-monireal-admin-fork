@@ -1,0 +1,28 @@
+<section aria-label="Charts section" class="page-container">
+    <ul aria-label="chart-list" class="chart-list">
+        <li aria-label="chart" class="chart">
+            <h4>Time Took Data</h4>
+            <canvas
+                    baseChart
+                    [data]="timeChartData"
+                    [labels]="timeChartData.labels"
+                    [type]="'bar'"
+            ></canvas>
+        </li>
+        <li aria-label="chart" class="chart">
+            <h4>Results Count Data</h4>
+            <canvas
+                    baseChart
+                    [data]="resultsChartData"
+                    [labels]="resultsChartData.labels"
+                    [type]="'bar'"
+            ></canvas>
+        </li>
+    </ul>
+    <div aria-label="query" class="space-y-4">
+        <h4>Executed query</h4>
+        <div class="query-div">
+            <p>{{ this.query }}</p>
+        </div>
+    </div>
+</section>

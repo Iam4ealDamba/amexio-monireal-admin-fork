@@ -1,0 +1,70 @@
+package fr.amexio.monireal.operations;
+
+import fr.amexio.monireal.constants.MonirealConstants;
+import org.json.JSONObject;
+import org.nuxeo.ecm.automation.core.annotations.Context;
+import org.nuxeo.ecm.automation.core.annotations.Operation;
+import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
+import org.nuxeo.ecm.automation.core.annotations.Param;
+import org.nuxeo.ecm.core.api.Blob;
+import org.nuxeo.ecm.core.api.CoreSession;
+import org.nuxeo.ecm.core.api.DocumentModel;
+import org.nuxeo.ecm.core.api.DocumentModelList;
+import org.nuxeo.ecm.core.api.impl.blob.JSONBlob;
+import org.nuxeo.ecm.platform.task.TaskService;
+
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+/**
+ *
+ */
+@Operation(id = MonirealWorkflowsFunctionsOP.ID, category = MonirealConstants.MONIREAL, label = "Monireal Workflows Functions", description = "Describe here what your operation does.")
+public class MonirealWorkflowsFunctionsOP {
+
+  public static final String ID = "Monireal.WorkflowsFunctions";
+
+  @Context
+  protected CoreSession session;
+
+  @Context
+  protected TaskService taskService;
+
+  @Param(name = "taskId", required = false)
+  protected String taskId;
+
+  @OperationMethod
+  public Blob run() {
+    try {
+      String query = "Select * from Document where ecm:primaryType = 'RoutingTask'";
+      DocumentModelList list = session.query(query);
+      List<JSONObject> results = new ArrayList<>();
+      JSONObject json = new JSONObject();
+
+      for (DocumentModel doc : list) {
+        GregorianCalendar calendar = (GregorianCalendar) doc.getPropertyValue("dc:modified");
+        JSONObject map = new JSONObject();
+        map.put("id", doc.getId());
+        map.put("name", doc.getTitle());
+        map.put("state", doc.getCurrentLifeCycleState());
+        map.put("directive", doc.getPropertyValue("nt:directive"));
+        map.put("creator", doc.getPropertyValue("dc:creator"));
+        map.put("modified", calendar.getTimeInMillis());
+        map.put("path", doc.getPathAsString());
+        map.put("repository", doc.getRepositoryName());
+        map.put("type", doc.getDocumentType().toString());
+
+        results.add(map);
+      }
+      // Insert into json object
+      json.put("tasks", results);
+
+      return new JSONBlob(json.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+      System.out.println("Voici l'erreur: "e.getMessage());
+      return null;
+    }
+  }
+}

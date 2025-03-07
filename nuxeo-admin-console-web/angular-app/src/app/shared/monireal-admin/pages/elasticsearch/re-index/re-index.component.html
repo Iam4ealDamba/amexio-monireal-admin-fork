@@ -1,0 +1,76 @@
+<section aria-label="repository" class="tab-content">
+    <p *ngIf="this.isLoading">Loading...</p>
+    <div aria-label="query" class="space-y-6">
+        <h4><u>Indexes State</u></h4>
+        <h5>Pending Count: {{ this.indexState.pendingCount }}</h5>
+        <h5>Running Count: {{ this.indexState.runningCount }}</h5>
+        <h5>
+            Total Command Count:
+            {{ this.indexState.totalCommand ? this.indexState.totalCommand : 0 }}
+        </h5>
+    </div>
+    <div aria-label="query" class="request-card">
+        <h4><u>Re-indexing with NXQL query</u></h4>
+        <h5>Only documents that match the query are indexed.</h5>
+        <form [formGroup]="this.formGroup" (ngSubmit)="this.execNXQL()" class="query-div">
+            <input
+                    type="text"
+                    class=""
+                    placeholder="Select * FROM Document..."
+                    formControlName="nxql"
+            />
+            <app-monireal-button-component title="Execute" type="submit"
+                                           buttonStyle="button-primary"
+                                           icon="matSearch"></app-monireal-button-component>
+            <!-- <p>{{ this.audit.query }}</p> -->
+        </form>
+    </div>
+    <div aria-label="query" class="request-card">
+        <h4><u>Re-indexing a document and its children</u></h4>
+        <h5>
+            This will re-index a document and its children recursively. Before
+            indexing, the document and its children are removed from Elasticsearch.
+            You may experience incomplete search results during the re-indexing.
+        </h5>
+        <form [formGroup]="this.formGroup" (ngSubmit)="this.execDocumentID()" class="query-div">
+            <input
+                    type="text"
+                    class="w-full bg-tw-neutral/5"
+                    placeholder="Enter a document UID..."
+                    formControlName="docUID"
+            />
+            <app-monireal-button-component title="Execute" type="submit"
+                                           buttonStyle="button-primary"
+                                           icon="matSearch"></app-monireal-button-component>
+            <!-- <p>{{ this.audit.query }}</p> -->
+        </form>
+    </div>
+    <div aria-label="query" class="request-card">
+        <h4><u>Flush all Elasticsearch indexes</u></h4>
+        <h5>Use this to make sure Elasticsearch flush its indexes to disk.</h5>
+        <div class="query-div">
+            <app-monireal-button-component title="Execute" type="submit"
+                                           (click)="execFlush()"
+                                           buttonStyle="button-primary"
+                                           icon="matSearch"></app-monireal-button-component>
+            <!-- <p>{{ this.audit.query }}</p> -->
+        </div>
+    </div>
+    <div aria-label="query" class="request-card">
+        <h4><u>Optimize all Elasticsearch indexes</u></h4>
+        <h5>
+            The optimize process basically optimizes the index for faster search
+            operations (and relates to the number of segments a Lucene index holds
+            within each shard). The optimize operation allows to reduce the number of
+            segments by merging them. Ask for a full optimization to a single segment.
+            Note that this can potentially be a very heavy operation.
+        </h5>
+        <div class="query-div">
+            <app-monireal-button-component title="Execute" type="submit"
+                                           buttonStyle="button-primary"
+                                           (click)="execOptimize()"
+                                           icon="matSearch"></app-monireal-button-component>
+            <!-- <p>{{ this.audit.query }}</p> -->
+        </div>
+    </div>
+</section>

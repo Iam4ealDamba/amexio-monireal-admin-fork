@@ -1,0 +1,79 @@
+@import 'ngx-toastr/toastr';
+
+p, h1, h2, h3, h4, h5, h6, span, a {
+  margin: 0;
+  padding: 0;
+}
+
+p, h1, h2, h3, h4, h5, h6, button, a, spam, div {
+  @apply transition-all;
+}
+
+h1 {
+  @apply text-xl font-bold;
+}
+
+h3 {
+  @apply text-base font-medium;
+}
+
+h4 {
+  @apply text-sm font-medium;
+}
+
+h5 {
+  @apply font-semibold;
+}
+
+button {
+  @apply rounded-md hover:brightness-95;
+}
+
+.page-content {
+  @apply w-full h-full flex flex-col;
+}
+
+table {
+  @apply w-full;
+
+  thead {
+    @apply border-b-2 border-b-tw-text-black/35;
+
+
+    th {
+      @apply text-sm font-bold text-tw-text-black/70 pb-2;
+    }
+  }
+
+  tbody {
+    @apply text-sm font-semibold text-tw-text-black;
+
+    tr {
+      @apply h-12 cursor-pointer bg-tw-text-white transition-all duration-300 hover:brightness-[.85];
+    }
+  }
+}
+
+.button-primary {
+  @apply rounded-md h-10 flex items-center justify-between px-6 text-sm text-tw-text-white bg-tw-primary font-semibold border-2 border-tw-text-black/20 shadow-md shadow-tw-text-black/35  hover:brightness-95;
+}
+
+.button-regular {
+  @apply rounded-md h-10 flex items-center justify-between px-6 text-sm text-tw-text-black border-2 border-tw-text-black/20 bg-tw-text-white font-semibold shadow-md shadow-tw-text-black/35  hover:brightness-95;
+}
+
+.button-inactive {
+  @apply rounded-md h-10 flex items-center justify-between px-6 text-sm text-tw-text-black/50 border-2 border-tw-text-black/15 bg-tw-text-black/10 font-semibold shadow-md shadow-tw-text-black/35  hover:brightness-95;
+}
+
+ng-icon {
+  @apply text-xl mr-2;
+}
+
+.box-shadow-md {
+  @apply border-[1px] shadow-md shadow-black/30;
+}
+
+.input-search {
+  @apply w-full max-w-[360px] h-10 px-4 py-2 outline-black/15 box-shadow-md focus:outline-none;
+}

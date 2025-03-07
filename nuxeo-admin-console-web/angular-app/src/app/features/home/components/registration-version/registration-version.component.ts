@@ -1,11 +1,11 @@
-import { versionInfo } from "./../../../../shared/types/version-info.interface";
+import { versionInfo } from "../../../../shared/types/version-info.interface";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Store, select } from "@ngrx/store";
 import { Observable, Subscription } from "rxjs";
 import * as HomeActions from "../../store/actions";
 import { HomeState } from "../../store/reducers";
 import { HttpErrorResponse } from "@angular/common/http";
-import { REGISTRATION_VERSION_LABELS } from "./../../../../features/home/home.constants"; 
+import { REGISTRATION_VERSION_LABELS } from "../../home.constants";
 
 @Component({
   selector: "registration-version",

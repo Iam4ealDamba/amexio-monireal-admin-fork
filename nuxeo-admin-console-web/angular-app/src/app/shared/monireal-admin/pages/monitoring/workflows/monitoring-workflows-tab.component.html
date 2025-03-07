@@ -1,0 +1,116 @@
+<section class="content">
+    <app-no-data *ngIf="!this.taskList.length"
+                 text="Sorry, no opened task were retireve, please try later..."></app-no-data>
+    <section *ngIf="this.taskList.length" class="flex justify-between items-center mt-4">
+        <div label="title">
+            <h1>{{ this.pageTitle }}</h1>
+            <h3>{{ this.pageDetails }}</h3>
+        </div>
+        <div label="buttons" class="flex items-center gap-x-4">
+            <app-monireal-button-component
+                    icon="heroPaperAirplaneSolid"
+                    [buttonStyle]="this.checkedTasks.length ? 'button-primary' : 'button-inactive'" title="Delegate"
+                    (click)="showDelegationModal = true"
+                    [disabled]="!this.checkedTasks.length"></app-monireal-button-component>
+            <app-monireal-button-component
+                    icon="heroTrashSolid"
+                    [buttonStyle]="this.checkedTasks.length ? 'button-primary' : 'button-inactive'" title="Cancel"
+                    [disabled]="!this.checkedTasks.length"></app-monireal-button-component>
+        </div>
+    </section>
+    <section *ngIf="this.taskList.length" class="w-full">
+        <form [formGroup]="this.formGroup" (ngSubmit)="handleSearch()" class="w-full flex items-center justify-end">
+            <input type="search" name="" id="" placeholder="Search task here..." formControlName="search"
+                   class="input-search"/>
+        </form>
+    </section>
+    <section *ngIf="this.taskList.length" class="flex flex-col gap-y-8 bg-tw-text-white px-6 pt-6 box-shadow-md"
+             label="table-div">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th>
+                    <div>
+                        <p>Workflow</p>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <p>Task Name</p>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <p>Initiator</p>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <p>Modified</p>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <p>Due Date</p>
+                    </div>
+                </th>
+                <th>
+                    <div>
+                        <p>Status</p>
+                    </div>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of this.taskList | paginate: {itemsPerPage: 6, currentPage: this.currentPage}">
+                <td>
+                    <input type="checkbox" (click)="handleCheckedItem(item.id)">
+                </td>
+                <td [title]="item.directive">
+                    {{
+                        item.directive.length >= 20
+                            ? item.directive
+                            .substring(3, item.directive.length)
+                            .slice(0, 22) + "..."
+                            : item.directive.substring(3, item.directive.length)
+                    }}
+                </td>
+                <td>
+                    <div class="h-full flex items-center space-x-2">
+                        <a [href]="item.path" target="_blank" class="underline">
+                            {{
+                                item.name.length >= 20
+                                    ? item.name
+                                    .substring(0, item.name.length)
+                                    .slice(0, 22) + "..."
+                                    : item.name.substring(0, item.name.length)
+                            }}</a>
+                        <ng-icon name="heroLink" class="text-sm"></ng-icon>
+                    </div>
+                </td>
+                <td>{{ item.creator }}</td>
+                <td>{{ item.modified | date : "short" }}</td>
+                <td *ngIf="this.dueDays > 0">{{ this.dueDays > 1 ? this.dueDays + " days" : this.dueDays + " day" }}</td>
+                <td *ngIf="this.dueDays <= 0">Expired</td>
+                <td>
+                    <ng-icon name="matCheckCircle" class="text-sm button-{{this.handleDueDate(item.dueDate)}}"
+                             *ngIf="this.handleDueDate(item.dueDate) === 'success'"></ng-icon>
+                    <ng-icon name="matWarningRound" class="text-sm button-{{this.handleDueDate(item.dueDate)}}"
+                             *ngIf="this.handleDueDate(item.dueDate) === 'warning'"></ng-icon>
+                    <ng-icon name="matErrorRound" class="text-sm button-{{this.handleDueDate(item.dueDate)}}"
+                             *ngIf="this.handleDueDate(item.dueDate) === 'danger'"></ng-icon>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <pagination-controls (pageChange)="this.currentPage = $event"></pagination-controls>
+    </section>
+    <app-workflow-delegation-modal
+            *ngIf="this.showDelegationModal"
+            [$taskList]="this.checkedTasks"
+            [$nuxeo]="this.nuxeo"
+            [$showModal]="this.showDelegationModal"
+            (emitShowModal)="this.showDelegationModal = $event"
+    ></app-workflow-delegation-modal>
+</section>

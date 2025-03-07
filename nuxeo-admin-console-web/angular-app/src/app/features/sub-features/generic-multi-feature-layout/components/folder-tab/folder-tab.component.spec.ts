@@ -17,7 +17,7 @@ import { MockStore, provideMockStore } from "@ngrx/store/testing";
 import { StoreModule } from "@ngrx/store";
 import { BehaviorSubject, of } from "rxjs";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
-import * as FeatureActions from "../../store//actions";
+import * as FeatureActions from "../../store/actions";
 import { FolderActionState } from "../../store/reducers";
 import { GenericMultiFeatureUtilitiesService } from "../../services/generic-multi-feature-utilities.service";
 import { GenericModalComponent } from "../generic-modal/generic-modal.component";

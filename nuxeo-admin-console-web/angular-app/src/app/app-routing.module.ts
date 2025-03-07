@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { Route } from "@angular/router";
 import { ROUTES_TITLE } from "./layouts/menu-bar/menu-bar.constants";
+import { monirealRoutes } from "./shared/monireal-admin/routing/monireal.routing";
 
 const routeTitle = ROUTES_TITLE;
 export const appRoutes: Route[] = [
@@ -55,12 +56,14 @@ export const appRoutes: Route[] = [
       ).then((m) => m.GenericMultiFeatureLayoutModule),
   },
   {
-  path: "fulltext-reindex",
+    path: "fulltext-reindex",
     loadChildren: () =>
       import(
         "./features/sub-features/generic-multi-feature-layout/generic-multi-feature-layout.module"
       ).then((m) => m.GenericMultiFeatureLayoutModule),
   },
+  // Add Monireal routes here
+  ...monirealRoutes,
   { path: "**", redirectTo: "" },
 ];
 

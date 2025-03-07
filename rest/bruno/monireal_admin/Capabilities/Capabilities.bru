@@ -1,0 +1,21 @@
+meta {
+  name: Capabilities
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/api/v1/directory
+  body: formUrlEncoded
+  auth: inherit
+}
+
+headers {
+  : 
+}
+
+body:json {
+  {
+    "timeoutSeconds": 10
+  }
+}

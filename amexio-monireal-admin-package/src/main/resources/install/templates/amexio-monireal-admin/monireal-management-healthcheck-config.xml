@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<component name="fr.amexio.monireal.monireal-management-healthcheck-config">
+
+    <extension point="healthCheck" target="org.nuxeo.ecm.core.management.CoreManagementComponent">
+        <!--
+        You might find some help here:
+        https://explorer.nuxeo.com/nuxeo/site/distribution/latest/viewExtensionPoint/org.nuxeo.ecm.core.management.CoreManagementComponent%2d%2dprobes
+        -->
+        <!-- S3 Health Check -->
+        <probe enabled="true" name="s3BinaryManagerStatus"/>
+        <!-- Runtime Health Check -->
+        <probe enabled="true" name="runtimeStatus"/>
+        <!-- Repository Health Check -->
+        <probe enabled="true" name="repositoryStatus"/>
+        <!-- LDAP Health Check -->
+        <probe enabled="true" name="ldapDirectories"/>
+        <!-- ElasticSearch Health Check -->
+        <probe enabled="true" name="elasticSearchStatus"/>
+        <!-- Stream Health Check -->
+        <probe enabled="true" name="streamStatus"/>
+    </extension>
+
+</component>

@@ -1,0 +1,19 @@
+@import "../../styles/monireal-style";
+
+.sub-content {
+  @apply flex flex-col gap-y-4;
+
+  & > div {
+    @apply p-4 bg-tw-text-white shadow-sm;
+  }
+
+  h5 {
+    @apply text-sm text-tw-text-black/65;
+  }
+
+  ul {
+    li {
+      @apply flex items-center justify-between ;
+    }
+  }
+}

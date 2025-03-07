@@ -32,7 +32,7 @@ nuxeo-admin-console-web/angular-app
 ```bash
 npm i
 ```
-## Start 
+## Start
 ```bash
 npm run start
 ```
@@ -55,7 +55,7 @@ mvn package
 ```
 This will build the `nuxeo-admin-console-package/target/nuxeo-admin-console-package-${project.version}.zip` Admin Console UI marketplace to be deployed in a nuxeo server.
 
-A nuxeo platform is expected to run on http://localhost:8080/nuxeo/nuxeoadmin. 
+A nuxeo platform is expected to run on http://localhost:8080/nuxeo/nuxeoadmin.
 To configure CORS, we need to add the following line to `nuxeo.conf` file in our Nuxeo Server:
 ```bash
   nuxeo.cors.urls=*

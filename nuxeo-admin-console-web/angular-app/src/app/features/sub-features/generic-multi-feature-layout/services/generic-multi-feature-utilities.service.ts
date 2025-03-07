@@ -1,4 +1,4 @@
-import { VIDEO_RENDITIONS_LABELS } from "./../../../video-renditions-generation/video-renditions-generation.constants";
+import { VIDEO_RENDITIONS_LABELS } from "../../../video-renditions-generation/video-renditions-generation.constants";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import {

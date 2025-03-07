@@ -1,4 +1,4 @@
-import { NetworkService } from "./../../../../shared/services/network.service";
+import { NetworkService } from "../../../../shared/services/network.service";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import {

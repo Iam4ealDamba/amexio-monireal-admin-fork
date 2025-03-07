@@ -1,0 +1,42 @@
+@import '../../styles/monireal-style';
+
+.content-wrapper {
+  @apply p-8;
+
+  h1 {
+    @apply text-xl font-bold;
+  }
+
+  h3 {
+    @apply text-base font-medium;
+  }
+
+  h5 {
+    @apply font-semibold;
+  }
+
+  .card {
+    @apply bg-tw-text-white drop-shadow-lg shadow-tw-text-black/85 px-4 py-6 w-full max-w-[340px] space-y-4;
+  }
+
+  .table-div {
+    @apply flex flex-col justify-between gap-y-8 bg-tw-text-white drop-shadow-md shadow-tw-text-black/85 px-7 pt-7;
+  }
+
+  input[type="search"] {
+    @apply w-full max-w-[300px] px-4 py-1.5 shadow-md shadow-tw-text-black/35 bg-tw-text-white placeholder-tw-text-black font-medium focus:outline-none;
+  }
+}
+
+.tabs {
+  @apply flex items-center w-full gap-x-6 text-sm mb-4;
+}
+
+.tab-content {
+  @apply flex pb-1 font-bold text-tw-text-black/65;
+}
+
+.tab-content.tab-active {
+  display: flex;
+  @apply border-b-2 border-b-tw-primary text-tw-text-black;
+}

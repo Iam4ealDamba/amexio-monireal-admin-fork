@@ -1,0 +1,56 @@
+<section aria-label="Charts section" class="page-container">
+    <ul aria-label="chart-list" class="chart-list">
+        <li aria-label="chart" class="chart">
+            <h4>Time Took Data</h4>
+            <canvas
+                    baseChart
+                    [data]="timeChartData"
+                    [labels]="timeChartData.labels"
+                    [type]="'bar'"
+            ></canvas>
+        </li>
+        <li aria-label="chart" class="chart">
+            <h4>Results Count Data</h4>
+            <canvas
+                    baseChart
+                    [data]="resultsChartData"
+                    [labels]="resultsChartData.labels"
+                    [type]="'bar'"
+            ></canvas>
+        </li>
+    </ul>
+    <div aria-label="query" class="space-y-4">
+        <h4>Executed query</h4>
+        <div class="query-div">
+            <p>{{ this.query }}</p>
+        </div>
+    </div>
+    <div class="flex flex-col gap-y-4">
+        <h4>De-Sync Results</h4>
+        <table class="table" *ngIf="this.repository?.results?.length && this.elasticSearch?.results?.length">
+            <tr
+                    *ngFor="
+          let desyncIndex of this.results.desyncData
+            | paginate
+              : {
+                  itemsPerPage: 10,
+                  currentPage: this.currentPage,
+                  totalItems: this.total,
+                }
+        "
+                    class="font-semibold divide-x-2 divide-tw-neutral/50"
+            >
+                <td>
+                    {{ desyncIndex }}
+                </td>
+            </tr>
+        </table>
+        <p *ngIf="!this.total">No data was found.</p>
+    </div>
+    <div *ngIf="total > 0">
+        <pagination-controls
+                [maxSize]="this.total"
+                (pageChange)="pageChanged($event)"
+        ></pagination-controls>
+    </div>
+</section>

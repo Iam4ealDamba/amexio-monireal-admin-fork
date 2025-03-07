@@ -1,0 +1,8 @@
+<section class="page-content content-wrapper" aria-label="page">
+    <app-monireal-tabs-list-component [tabs]="tabs" [currentTab]="currentTab"
+                                      (getCurrentTab)="handleSelectedTab($event)"></app-monireal-tabs-list-component>
+    <div aria-label="content" [ngSwitch]="currentTab" class="flex-1">
+        <app-monitoring-workflows *ngSwitchCase="1"></app-monitoring-workflows>
+        <app-monitoring-workflows *ngSwitchDefault></app-monitoring-workflows>
+    </div>
+</section>

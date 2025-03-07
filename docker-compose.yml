@@ -1,0 +1,100 @@
+# ------------ NAME ------------
+name: amexio-monireal-admin
+
+# ------------ SERVICES ------------
+services:
+  # Database
+  monireal-psql:
+    image: postgres:13
+    container_name: monireal-psql
+    env_file: .env
+    restart: on-failure
+    ports:
+      - ${DB_PG_PORT}
+    networks:
+      - monireal
+    volumes:
+      - amexio-monireal-admin-psql-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${DB_PWD}
+      POSTGRES_USER: ${DB_USER}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  # Elasticsearch
+  monireal-elastic:
+    image: elasticsearch:7.17.22
+    container_name: monireal-elastic
+    env_file: .env
+    restart: on-failure
+    ports:
+      - ${ES_PORT}
+    networks:
+      - monireal
+    volumes:
+      - amexio-monireal-admin-elastic-data:/usr/share/elasticsearch/data
+      - amexio-monireal-admin-elastic-logs:/usr/share/elasticsearch/logs
+    environment:
+      - TZ=${TZ}
+      - node.name=${ES_NODE_NAME}
+      - cluster.name=${ES_CLUSTER_NAME}
+      - discovery.type=single-node
+      - xpack.security.enabled=true
+      - ELASTIC_PASSWORD=${ES_PWD}
+      - LICENSE=basic
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    healthcheck:
+      test:
+        ["CMD-SHELL", "sh -c 'curl -XGET http://localhost:9200/_cat/health'"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+  # Nuxeo
+  monireal:
+    image: ${NX_IMG}
+    container_name: monireal
+    restart: on-failure
+    env_file: .env
+    stdin_open: true
+    tty: true
+    depends_on:
+      monireal-psql:
+        condition: service_healthy
+      monireal-elastic:
+        condition: service_healthy
+    ports:
+      - ${NX_PORT}:8080
+    networks:
+      - monireal
+    volumes:
+      - amexio-monireal-admin-logs:/var/log/nuxeo
+      - amexio-monireal-admin-data:/var/lib/nuxeo
+      - amexio-monireal-admin-tmp:/tmp
+      - ./nuxeo/conf/conf.d:/etc/nuxeo/conf.d
+      - ./nuxeo/home:/home/bundles
+      - ./nuxeo/packages:/opt/nuxeo/server/packages/store
+    environment:
+      # ------------ NUXEO ------------
+      JAVA_OPTS: -XshowSettings:vm
+      NUXEO_DEV: ${NX_DEV}
+      NUXEO_CLID: ${NX_CLID}
+      NUXEO_PACKAGES: ${NX_PACKAGES}
+
+# ------------ NETWORKS ------------
+networks:
+  monireal:
+    driver: bridge
+    name: monireal
+    external: true
+
+# ------------ VOLUMES ------------
+volumes:
+  amexio-monireal-admin-psql-data:
+  amexio-monireal-admin-elastic-data:
+  amexio-monireal-admin-elastic-logs:
+  amexio-monireal-admin-logs:
+  amexio-monireal-admin-pid:
+  amexio-monireal-admin-data:
+  amexio-monireal-admin-tmp:

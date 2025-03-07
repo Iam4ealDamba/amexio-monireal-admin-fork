@@ -1,4 +1,4 @@
-import { ErrorModalComponent } from '../error-modal/error-modal.component';
+import { ErrorModalComponent } from './error-modal.component';
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";

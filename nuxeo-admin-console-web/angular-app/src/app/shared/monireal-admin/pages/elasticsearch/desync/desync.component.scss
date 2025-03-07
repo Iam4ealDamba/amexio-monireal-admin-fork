@@ -1,0 +1,24 @@
+.page-container {
+  @apply flex flex-col gap-y-6;
+
+  ul,
+  div {
+    @apply p-6 bg-tw-text-white shadow-sm;
+  }
+
+  .chart-list {
+    @apply flex justify-center items-center gap-x-8 max-xl:flex-col max-xl:gap-y-4;
+
+    .chart {
+      @apply w-full h-full flex flex-col gap-y-4 text-center max-2xl:max-w-[400px] max-2xl:max-h-[400px] max-xl:max-w-[500px] max-xl:max-h-[500px];
+
+      canvas {
+        @apply w-full h-full;
+      }
+    }
+  }
+
+  .query-div {
+    @apply bg-tw-text-black/10;
+  }
+}

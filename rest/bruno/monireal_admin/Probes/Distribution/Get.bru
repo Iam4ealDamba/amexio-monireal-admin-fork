@@ -1,0 +1,21 @@
+meta {
+  name: Get
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/api/v1/management/distribution
+  body: formUrlEncoded
+  auth: inherit
+}
+
+body:json {
+  {
+    "timeoutSeconds": 10
+  }
+}
+
+body:form-urlencoded {
+  ~nxql: SELECT * FROM Document WHERE ecm:isProxy = 0 AND ecm:isVersion = 0 AND ecm:isTrashed = 0
+}

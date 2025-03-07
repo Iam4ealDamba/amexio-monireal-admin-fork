@@ -1,8 +1,8 @@
 import {
   ProbeHistory,
   ProbeStatus,
-} from "./../../../shared/types/probes.interface";
-import { versionInfo } from "./../../../shared/types/version-info.interface";
+} from "../../../shared/types/probes.interface";
+import { versionInfo } from "../../../shared/types/version-info.interface";
 import { createReducer, on } from "@ngrx/store";
 import * as HomeActions from "./actions";
 import { HttpErrorResponse } from "@angular/common/http";

@@ -1,0 +1,6 @@
+<a class="flex items-center justify-center {{ this.buttonStyle }} hover:brightness-95" type="{{this.type}}"
+   [href]="this.url"
+   [target]="this.externalLink ? '_blank' : '_self'">
+    <ng-icon *ngIf="this.icon.length" [name]="this.icon"></ng-icon>
+    <p>{{ this.title }}</p>
+</a>

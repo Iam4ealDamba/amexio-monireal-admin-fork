@@ -1,4 +1,4 @@
-import { VIDEO_RENDITIONS_LABELS } from './../../video-renditions-generation/video-renditions-generation.constants';
+import { VIDEO_RENDITIONS_LABELS } from '../../video-renditions-generation/video-renditions-generation.constants';
 import { ELASTIC_SEARCH_LABELS } from "../../elastic-search-reindex/elastic-search-reindex.constants";
 import { GENERIC_LABELS } from "./generic-multi-feature-layout.constants";
 import { THUMBNAIL_GENERATION_LABELS } from "../../thumbnail-generation/thumbnail-generation.constants";

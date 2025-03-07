@@ -2,7 +2,7 @@ import {
   MAT_SNACK_BAR_DATA,
   MatSnackBarRef,
 } from "@angular/material/snack-bar";
-import { BULK_ACTION_LABELS } from "./../../../features/bulk-action-monitoring/bulk-action-monitoring.constants";
+import { BULK_ACTION_LABELS } from "../../../features/bulk-action-monitoring/bulk-action-monitoring.constants";
 import { Component, Inject } from "@angular/core";
 import { SnackBarData } from "../../types/common.interface";
 

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>fr.amexio.monireal</groupId>
+    <artifactId>amexio-monireal-admin</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>amexio-monireal-admin-core</artifactId>
+  <name>Amexio Monireal Admin Core</name>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <!--|||||||||||||||||||||||
+     DEPENDENCIES
+     |||||||||||||||||||||||||||-->
+
+  <!-- |||||||||||||||||||| -->
+  <!-- Nuxeo Dependencies -->
+  <!-- |||||||||||||||||||| -->
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.nuxeo.client/nuxeo-java-client -->
+    <dependency>
+      <groupId>org.nuxeo.client</groupId>
+      <artifactId>nuxeo-java-client</artifactId>
+      <version>4.0.0</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.nuxeo.client/nuxeo-java-client-test -->
+    <dependency>
+      <groupId>org.nuxeo.client</groupId>
+      <artifactId>nuxeo-java-client-test</artifactId>
+      <version>3.4.0</version>
+    </dependency>
+
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo Common -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.common</groupId>
+      <artifactId>nuxeo-common</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo Platform -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-audit-api</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-test</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-query-api</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-task-test</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-task-core</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-task-api</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-features-test</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-directory-types-contrib</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo Core -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-test</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-api</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-query</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.core</groupId>
+      <artifactId>nuxeo-core-schema</artifactId>
+      <version>2023.22.13</version>
+      <optional>true</optional>
+    </dependency>
+
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo Routing -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.routing</groupId>
+      <artifactId>nuxeo-routing-core</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.routing</groupId>
+      <artifactId>nuxeo-routing-api</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo Automation -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.automation</groupId>
+      <artifactId>nuxeo-automation-features</artifactId>
+      <version>2023.22.13</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.automation</groupId>
+      <artifactId>nuxeo-automation-test</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.automation</groupId>
+      <artifactId>nuxeo-automation-core</artifactId>
+      <version>2023.22.13</version>
+      <optional>true</optional>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo Runtime -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.runtime</groupId>
+      <artifactId>nuxeo-runtime</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.runtime</groupId>
+      <artifactId>nuxeo-runtime-test</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.runtime</groupId>
+      <artifactId>nuxeo-runtime-test</artifactId>
+      <version>2023.22.13</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.runtime</groupId>
+      <artifactId>nuxeo-runtime-metrics</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo ElasticSearch -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.elasticsearch</groupId>
+      <artifactId>nuxeo-elasticsearch-core</artifactId>
+      <version>2023.22.13</version>
+      <classifier>tests</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.elasticsearch</groupId>
+      <artifactId>nuxeo-elasticsearch-web</artifactId>
+      <version>2023.22.13</version>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.elasticsearch</groupId>
+      <artifactId>nuxeo-elasticsearch-audit</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- Nuxeo Login -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.nuxeo.ecm.platform</groupId>
+      <artifactId>nuxeo-platform-login</artifactId>
+      <version>2023.22.13</version>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- JBoss Seam -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.jboss.seam</groupId>
+      <artifactId>jboss-seam</artifactId>
+      <version>2.3.1.Final</version>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- OSGI -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>osgi.core</artifactId>
+      <version>8.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- JSON -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20240303</version>
+    </dependency>
+
+    <!-- |||||||||||||||||||| -->
+    <!-- JUnit -->
+    <!-- |||||||||||||||||||| -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.automation</groupId>
+      <artifactId>nuxeo-automation-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.automation</groupId>
+      <artifactId>nuxeo-automation-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>

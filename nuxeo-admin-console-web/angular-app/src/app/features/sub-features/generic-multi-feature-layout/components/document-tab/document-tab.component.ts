@@ -1,10 +1,10 @@
-import { VIDEO_RENDITIONS_LABELS } from "./../../../../video-renditions-generation/video-renditions-generation.constants";
-import { FULLTEXT_REINDEX_LABELS } from "src/app/features/fulltext-reindex/fulltext-reindex.constants";
-import { REST_END_POINTS } from "./../../../../../shared/constants/rest-end-ponts.constants";
-import { GenericMultiFeatureUtilitiesService } from "./../../services/generic-multi-feature-utilities.service";
-import { NuxeoJSClientService } from "./../../../../../shared/services/nuxeo-js-client.service";
+import { VIDEO_RENDITIONS_LABELS } from "../../../../video-renditions-generation/video-renditions-generation.constants";
+import { FULLTEXT_REINDEX_LABELS } from "../../../../fulltext-reindex/fulltext-reindex.constants";
+import { REST_END_POINTS } from "../../../../../shared/constants/rest-end-ponts.constants";
+import { GenericMultiFeatureUtilitiesService } from "../../services/generic-multi-feature-utilities.service";
+import { NuxeoJSClientService } from "../../../../../shared/services/nuxeo-js-client.service";
 import { ErrorModalComponent } from "../error-modal/error-modal.component";
-import { ErrorModalClosedInfo } from "./../../../../../shared/types/common.interface";
+import { ErrorModalClosedInfo } from "../../../../../shared/types/common.interface";
 import {
   ErrorDetails,
   FeatureData,

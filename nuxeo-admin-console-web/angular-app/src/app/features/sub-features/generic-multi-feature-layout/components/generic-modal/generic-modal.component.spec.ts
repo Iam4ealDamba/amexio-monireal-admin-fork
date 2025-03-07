@@ -1,7 +1,7 @@
 import { GenericModalComponent } from './generic-modal.component';
-import { GENERIC_LABELS } from './../../generic-multi-feature-layout.constants';
-import { GenericModalData } from './../../generic-multi-feature-layout.interface';
-import { CommonService } from './../../../../../shared/services/common.service';
+import { GENERIC_LABELS } from '../../generic-multi-feature-layout.constants';
+import { GenericModalData } from '../../generic-multi-feature-layout.interface';
+import { CommonService } from '../../../../../shared/services/common.service';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from "@angular/material/dialog";
 import {
   ComponentFixture,

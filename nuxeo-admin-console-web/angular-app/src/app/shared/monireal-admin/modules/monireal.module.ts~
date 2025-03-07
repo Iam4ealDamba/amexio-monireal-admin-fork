@@ -1,0 +1,7 @@
+import {IconDefaultComponent} from "../components/icons/icons.default.component";
+import {ToastrDefaultComponent} from "../components/toastr/toastr.default.component";
+
+export const MonirealModule  = {
+  IconDefaultComponent,
+  ToastrDefaultComponent
+}

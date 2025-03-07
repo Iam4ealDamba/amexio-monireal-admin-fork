@@ -1,0 +1,8 @@
+auth {
+  mode: basic
+}
+
+auth:basic {
+  username: <NUXEO_USERNAME>
+  password: <NUXEO_PASSWORD>
+}

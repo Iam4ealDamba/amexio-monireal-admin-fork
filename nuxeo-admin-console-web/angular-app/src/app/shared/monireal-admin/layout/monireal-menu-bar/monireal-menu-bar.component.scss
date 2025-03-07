@@ -1,0 +1,33 @@
+$sidenav-list-item-selected-bg-color: #000000;
+$selected-line-bg-color: #0c6bd4;
+
+.menu-bar {
+  height: 100%;
+  min-width: 260px;
+  background-color: #212121;
+  padding-top: 24px;
+}
+
+.mdc-list-item.mdc-list-item--with-one-line {
+  height: 36px !important;
+}
+
+.moni-dropdown-menu {
+  @apply w-full px-5 flex justify-between items-center border-l-4 h-[36px] border-transparent text-tw-text-white;
+}
+
+.moni-menu-btn {
+  @apply w-full px-5 flex justify-between items-center border-l-4 h-[36px] border-transparent text-tw-text-white/70 transition-all duration-300 hover:border-tw-primary hover:cursor-pointer hover:bg-black hover:text-tw-text-white;
+
+  &__selected {
+    @apply font-semibold border-tw-primary cursor-pointer bg-black text-tw-text-white;
+  }
+}
+
+.moni-sub-menu-btn {
+  @apply w-full px-8 flex justify-between items-center border-l-4 h-[36px] border-transparent text-tw-text-white/70 transition-all duration-300 hover:border-tw-primary hover:cursor-pointer hover:bg-black hover:text-tw-text-white;
+}
+
+.moni-sub-menu-btn.moni-menu-btn__selected {
+  @apply border-tw-primary text-tw-text-white;
+}

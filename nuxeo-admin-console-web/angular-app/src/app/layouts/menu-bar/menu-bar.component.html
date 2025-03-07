@@ -1,15 +1,47 @@
 <mat-nav-list class="menu-bar" role="navigation" aria-label="navigation">
-      <a mat-list-item *ngFor="let item of menu; let i = index" (click)="menuItemSelected(item.id)"
-            (keyup.enter)="menuItemSelected(item.id)" class="menu-bar__list-item" [routerLink]="[item.path]"
-            [routerLinkActive]="['menu-bar__list-item--selected']"
-            [routerLinkActiveOptions]="item.name === 'Home' ? { exact: true } :  { exact: false }" role="menuitem"
-            [attr.aria-selected]="item.isSelected ? 'true' : 'false'">
+  <a
+    mat-list-item
+    *ngFor="let item of menu; let i = index"
+    (click)="menuItemSelected(item.id)"
+    (keyup.enter)="menuItemSelected(item.id)"
+    class="menu-bar__list-item"
+    [routerLink]="[item.path]"
+    [routerLinkActive]="['menu-bar__list-item--selected']"
+    [routerLinkActiveOptions]="
+      item.name === 'Home' ? { exact: true } : { exact: false }
+    "
+    role="menuitem"
+    [attr.aria-selected]="item.isSelected ? 'true' : 'false'"
+  >
+    <span
+      class="menu-bar__line"
+      [routerLinkActive]="['menu-bar__line--selected']"
+      [routerLinkActiveOptions]="
+        item.name === 'Home' ? { exact: true } : { exact: false }
+      "
+    ></span>
 
-            <span class="menu-bar__line" [routerLinkActive]="['menu-bar__line--selected']"
-                  [routerLinkActiveOptions]="item.name === 'Home' ? { exact: true } :  { exact: false }"></span>
-
-            <span class="menu-bar__list-item-content" [routerLinkActive]="['menu-bar__list-item-content--selected']"
-                  [routerLinkActiveOptions]="item.name === 'Home' ? { exact: true } :  { exact: false }">{{ item.name
-                  }}</span>
-      </a>
+    <span
+      class="menu-bar__list-item-content"
+      [routerLinkActive]="['menu-bar__list-item-content--selected']"
+      [routerLinkActiveOptions]="
+        item.name === 'Home' ? { exact: true } : { exact: false }
+      "
+      >{{ item.name }}</span
+    >
+  </a>
+  <section>
+    <div
+      class="px-5 flex justify-between items-center border-l-4 h-[36px] border-transparent hover:border-tw-primary hover:cursor-pointer hover:bg-black transition-all duration-300"
+      aria-label="drop-menu-top"
+    >
+      <p class="inline-block text-tw-text-white text-sm m-0">Monireal Admin</p>
+      <mat-icon
+        class="ml-2 text-tw-text-white"
+        fontSet="material-symbols-outlined"
+        aria-hidden="false"
+        >expand_more</mat-icon
+      >
+    </div>
+  </section>
 </mat-nav-list>

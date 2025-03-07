@@ -1,4 +1,4 @@
-import { GenericMultiFeatureEndpointsService } from './../services/generic-multi-feature-endpoints.service';
+import { GenericMultiFeatureEndpointsService } from '../services/generic-multi-feature-endpoints.service';
 import { HttpErrorResponse } from "@angular/common/http";
 import { inject } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";

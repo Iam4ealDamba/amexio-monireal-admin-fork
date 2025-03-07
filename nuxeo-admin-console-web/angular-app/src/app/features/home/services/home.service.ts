@@ -1,4 +1,4 @@
-import { CapabilitiesResponse } from "./../../../shared/types/capabilities.interface";
+import { CapabilitiesResponse } from "../../../shared/types/capabilities.interface";
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";

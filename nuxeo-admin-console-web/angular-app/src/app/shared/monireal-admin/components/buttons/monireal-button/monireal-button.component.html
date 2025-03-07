@@ -1,0 +1,4 @@
+<button class="flex items-center justify-center {{ this.buttonStyle }}" type="{{this.type}}" [disabled]="this.disabled">
+    <ng-icon *ngIf="this.icon.length" [name]="this.icon"></ng-icon>
+    <p>{{ this.title }}</p>
+</button>

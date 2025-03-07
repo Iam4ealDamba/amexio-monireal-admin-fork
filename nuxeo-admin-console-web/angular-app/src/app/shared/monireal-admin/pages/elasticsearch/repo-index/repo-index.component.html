@@ -1,0 +1,73 @@
+<section aria-label="repository" class="tab-content" *ngIf="!this.isDocumentDetailSelected">
+    <section class="flex justify-between items-center bg-transparent p-4">
+        <div label="title">
+            <h1>{{ this.title }}</h1>
+            <h3>{{ this.description }}</h3>
+        </div>
+        <div>
+            <app-monireal-button-component title="Filters"
+                                           icon="matFilterAltOutline"></app-monireal-button-component>
+        </div>
+    </section>
+    <div class="flex justify-between items-center">
+        <div class="w-full">
+            <h3 class="!font-semibold">Indexes List</h3>
+        </div>
+        <form
+                [formGroup]="formGroup"
+                (ngSubmit)="onSearch()"
+                class="flex flex-1 gap-x-4"
+        >
+            <input
+                    type="search"
+                    placeholder="Search documents index..."
+                    formControlName="search"
+                    class="search-index"
+            />
+            <app-monireal-button-component title="Search" type="submit"
+                                           buttonStyle="button-primary"
+                                           icon="matSearch"
+                                           (click)="onSearch()"></app-monireal-button-component>
+        </form>
+    </div>
+    <div class="flex flex-col gap-y-4">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Document ID</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr
+                    *ngFor="
+              let item of this.results
+                | paginate
+                  : {
+                      itemsPerPage: 6,
+                      currentPage: this.currentPage,
+                      totalItems: this.results.length,
+                    }
+            "
+                    class="font-semibold divide-x-2 divide-tw-neutral/50"
+            >
+                <td (click)="this.isDocumentDetailSelected = item">
+                    {{ item }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <pagination-controls
+                [maxSize]="this.results.length"
+                (pageChange)="pageChanged($event)"
+        ></pagination-controls>
+    </div>
+</section>
+<section aria-label="repository" class="tab-content" *ngIf="this.isDocumentDetailSelected">
+    <app-document-detail-template-component
+            [title]="this.title"
+            [description]="this.description"
+            [documentID]="this.isDocumentDetailSelected"
+            ($emitHideTemplate)="this.handleDocumentDetailClose($event)"></app-document-detail-template-component>
+</section>

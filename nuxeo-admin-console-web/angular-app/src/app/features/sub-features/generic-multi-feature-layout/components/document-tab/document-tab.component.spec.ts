@@ -16,7 +16,7 @@ import {  StoreModule } from "@ngrx/store";
 import { BehaviorSubject, of } from "rxjs";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { DocumentActionState } from "../../store/reducers";
-import * as FeatureActions from "../../store//actions";
+import * as FeatureActions from "../../store/actions";
 import { NuxeoJSClientService } from "../../../../../shared/services/nuxeo-js-client.service";
 import {
   ERROR_TYPES,

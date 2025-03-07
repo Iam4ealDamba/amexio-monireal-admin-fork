@@ -1,6 +1,6 @@
-import { VIDEO_RENDITIONS_LABELS } from "./../../../../video-renditions-generation/video-renditions-generation.constants";
-import { FULLTEXT_REINDEX_LABELS } from "src/app/features/fulltext-reindex/fulltext-reindex.constants";
-import { REST_END_POINTS } from "./../../../../../shared/constants/rest-end-ponts.constants";
+import { VIDEO_RENDITIONS_LABELS } from "../../../../video-renditions-generation/video-renditions-generation.constants";
+import { FULLTEXT_REINDEX_LABELS } from "../../../../fulltext-reindex/fulltext-reindex.constants";
+import { REST_END_POINTS } from "../../../../../shared/constants/rest-end-ponts.constants";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import {
@@ -147,7 +147,7 @@ export class NXQLTabComponent implements OnInit, OnDestroy {
         new FormControl("false")
       );
     }
-    if(this.isFeatureFullTextReindex()) {
+    if (this.isFeatureFullTextReindex()) {
       this.inputForm.addControl(
         FULLTEXT_REINDEX_LABELS.FORCE,
         new FormControl("false")
@@ -181,10 +181,7 @@ export class NXQLTabComponent implements OnInit, OnDestroy {
   }
 
   isFeatureFullTextReindex(): boolean {
-    return (
-      this.activeFeature ===
-      (FEATURES.FULLTEXT_REINDEX as FeaturesKey)
-    );
+    return this.activeFeature === (FEATURES.FULLTEXT_REINDEX as FeaturesKey);
   }
 
   showActionErrorModal(error: ErrorDetails): void {
