@@ -1,4 +1,4 @@
-import { BulkActionMonitoringInfo, BulkActionInfoSummary, BulkActionInfoDetails } from '../../../bulk-action-monitoring.interface';
+import { BulkActionMonitoringInfo, BulkActionInfoSummary, BulkActionInfoDetails } from './../../../bulk-action-monitoring.interface';
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatCardModule } from "@angular/material/card";
 import { BulkActionMonitoringSummaryComponent } from "./bulk-action-monitoring-summary/bulk-action-monitoring-summary.component";

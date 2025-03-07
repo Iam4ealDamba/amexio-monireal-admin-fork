@@ -2,7 +2,7 @@ import {
   BulkActionMonitoringInfo,
   BulkActionInfoSummary,
   BulkActionInfoDetails,
-} from "../../../bulk-action-monitoring.interface";
+} from "./../../../bulk-action-monitoring.interface";
 import { Component, Input, OnChanges } from "@angular/core";
 
 @Component({

@@ -4,7 +4,7 @@ import { catchError, map, switchMap } from "rxjs/operators";
 import { createEffect } from "@ngrx/effects";
 import { Actions, ofType } from "@ngrx/effects";
 import { BulkActionMonitoringService } from "../services/bulk-action-monitoring.service";
-import * as BulkActionMonitoringActions from "./actions";
+import * as BulkActionMonitoringActions from "../store/actions";
 import { inject } from "@angular/core";
 export const loadPerformBulkActionMonitoringEffect = createEffect(
   (

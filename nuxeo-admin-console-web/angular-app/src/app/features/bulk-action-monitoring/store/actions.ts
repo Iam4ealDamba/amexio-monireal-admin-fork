@@ -1,4 +1,4 @@
-import { BulkActionMonitoringInfo } from '../bulk-action-monitoring.interface';
+import { BulkActionMonitoringInfo } from './../bulk-action-monitoring.interface';
 import { createAction, props } from "@ngrx/store";
 import { HttpErrorResponse } from "@angular/common/http";
 

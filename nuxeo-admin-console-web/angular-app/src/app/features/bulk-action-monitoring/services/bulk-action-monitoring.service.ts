@@ -1,5 +1,5 @@
-import { REST_END_POINTS } from "../../../shared/constants/rest-end-ponts.constants";
-import { NetworkService } from "../../../shared/services/network.service";
+import { REST_END_POINTS } from "./../../../shared/constants/rest-end-ponts.constants";
+import { NetworkService } from "./../../../shared/services/network.service";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { BulkActionMonitoringInfo } from "../bulk-action-monitoring.interface";

@@ -1,7 +1,7 @@
 import { TestBed } from "@angular/core/testing";
 import { BulkActionMonitoringService } from "./bulk-action-monitoring.service";
-import { NetworkService } from "../../../shared/services/network.service";
-import { REST_END_POINTS } from "../../../shared/constants/rest-end-ponts.constants";
+import { NetworkService } from "./../../../shared/services/network.service";
+import { REST_END_POINTS } from "./../../../shared/constants/rest-end-ponts.constants";
 
 describe("BulkActionMonitoringService", () => {
   let service: BulkActionMonitoringService;

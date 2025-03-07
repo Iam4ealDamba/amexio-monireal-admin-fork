@@ -1,5 +1,5 @@
-import { BULK_ACTION_LABELS } from "../../../bulk-action-monitoring.constants";
-import { CommonService } from "../../../../../shared/services/common.service";
+import { BULK_ACTION_LABELS } from "./../../../bulk-action-monitoring.constants";
+import { CommonService } from "./../../../../../shared/services/common.service";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
 import { MockStore, provideMockStore } from "@ngrx/store/testing";
