@@ -1,0 +1,45 @@
+.registration-version {
+  height: 100%;
+  &.mdc-card {
+    border-radius: 12px;
+    padding: 24px;
+    background: white;
+    border: 1px solid #d1d5db;
+    box-shadow: none;
+  }
+}
+
+.registration-version__button {
+  border-radius: 4px;
+  width: 79px;
+  height: 36px;
+  position: absolute;
+  bottom: 8%;
+  right: 4%;
+}
+
+.registration-version__content {
+  display: block;
+  padding: 0 0 !important;
+  font-size: 20px;
+}
+
+.registration-version__content--first {
+  padding-top: 0;
+}
+
+.registration-version__version {
+  margin-top: 15px;
+}
+
+.registration-version__label {
+  font-weight: bold;
+  margin-right: 10px;
+  margin-left: 21px;
+  font-size: 14px;
+}
+
+.version-info {
+  margin-left: 21px;
+  color: black;
+}

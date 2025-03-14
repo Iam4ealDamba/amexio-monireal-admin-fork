@@ -68,12 +68,10 @@
                         </goals>
                         <configuration>
                             <overwrite>true</overwrite>
-                            <outputDirectory>${project.build.directory}/classes/web/nuxeo.war/monireal/
-                            </outputDirectory>
+                            <outputDirectory>${project.build.directory}/classes/web/nuxeo.war/nuxeoadmin/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.basedir}/${angular.project.location}/dist/admin_console_ui
-                                    </directory>
+                                    <directory> ${project.basedir}/${angular.project.location}/dist/admin_console_ui</directory>
                                 </resource>
                             </resources>
                         </configuration>

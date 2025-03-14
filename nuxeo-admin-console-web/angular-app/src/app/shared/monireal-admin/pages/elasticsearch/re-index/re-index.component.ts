@@ -3,12 +3,16 @@ import {NuxeoCliService} from '../../../services/nuxeo-cli/nuxeo.service';
 import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {ToastrCustomService} from "../../../services/toastr/toastr.service";
 import {MonirealButtonComponent} from "../../../components/buttons/monireal-button/monireal-button.component";
+import {ConfirmModalComponent} from "../../../components/modals/confirmation/confirm-modal.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-reindex-tab',
   imports: [
     ReactiveFormsModule,
-    MonirealButtonComponent
+    MonirealButtonComponent,
+    ConfirmModalComponent,
+    NgIf
   ],
   templateUrl: './re-index.component.html',
   styleUrls: ['./re-index.component.scss'],
@@ -21,6 +25,14 @@ export class ReindexTabComponent implements OnInit {
     nxql: new FormControl(''),
     docUID: new FormControl(''),
   });
+  
+  flushTitle = "Flush all Elasticsearch indexes";
+  flushdescription = "This operation can take some times, are you sure to flush all ElasticSearch indexes ?";
+  showFlushModal = false;
+  
+  optimizeTitle = "Optimize all Elasticsearch indexes";
+  optimizedescription = "This operation can take some times, are you sure to optimize all ElasticSearch indexes ?";
+  showOptimizeModal = false;
   
   /**
    *
@@ -87,19 +99,21 @@ export class ReindexTabComponent implements OnInit {
     }
   }
   
-  execFlush() {
-    const confirm = window.confirm('Are you sure to flush indexes?');
-    if (!confirm) return;
-    this.nuxeo.exec('ELASTIC_REINDEX_FLUSH').subscribe((res: any) => {
-      this.toastr.showToast("Success", "Opération was successfully executed");
-    });
+  execFlush(confirm: boolean) {
+    if (!confirm) this.showFlushModal = false;
+    else {
+      this.nuxeo.exec('ELASTIC_REINDEX_FLUSH').subscribe((res: any) => {
+        this.toastr.showToast("Success", "Opération was successfully executed");
+      });
+    }
   }
   
-  execOptimize() {
-    const confirm = window.confirm('Are you sure to optimize indexes?');
-    if (!confirm) return;
-    this.nuxeo.exec('ELASTIC_REINDEX_OPTIMIZE').subscribe((res: any) => {
-      this.toastr.showToast("Success", "Opération was successfully executed");
-    });
+  execOptimize(confirm: boolean) {
+    if (!confirm) this.showOptimizeModal = false;
+    else {
+      this.nuxeo.exec('ELASTIC_REINDEX_OPTIMIZE').subscribe((res: any) => {
+        this.toastr.showToast("Success", "Opération was successfully executed");
+      });
+    }
   }
 }

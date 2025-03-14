@@ -10,13 +10,15 @@ import {ToastrCustomService} from "../../../services/toastr/toastr.service"
 import {NoDataComponent} from "../../../templates/no-data/no-data.component";
 import {WorkflowDelegationModalComponent} from "./workflow-delegation/workflow-delegation.component";
 import {MonirealButtonComponent} from "../../../components/buttons/monireal-button/monireal-button.component";
+import {TaskDetailTemplateComponent} from "../../../templates/task-detail/task-detail.component";
+import {ConfirmModalComponent} from "../../../components/modals/confirmation/confirm-modal.component";
 
 @Component({
   selector: 'app-monitoring-workflows',
   templateUrl: './monitoring-workflows-tab.component.html',
   styleUrls: ['./monitoring-workflows-tab.component.scss'],
   standalone: true,
-  imports: [CommonModule, NgIconComponent, NgxPaginationModule, ReactiveFormsModule, NoDataComponent, WorkflowDelegationModalComponent, MonirealButtonComponent]
+  imports: [CommonModule, NgIconComponent, NgxPaginationModule, ReactiveFormsModule, NoDataComponent, WorkflowDelegationModalComponent, MonirealButtonComponent, TaskDetailTemplateComponent, ConfirmModalComponent]
 })
 export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
   // -----------------------------------
@@ -27,6 +29,11 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
   pageTitle = "Workflows";
   pageDetails = "Management of all the opened tasks in the application."
   isLoading = true;
+  showDetail = false;
+  
+  showCancelModal = false;
+  cancelTitle = "Cancel Workflow task";
+  canceldescription = "Are you sure do cancel those workflow tasks ?";
   
   // Tasks Variables
   taskList: TaskType[] = [];
@@ -35,6 +42,7 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
   dueDays = 0;
   currentPage = 1;
   showDelegationModal = false;
+  selectedTask = "";
   
   
   formGroup: FormGroup = new FormGroup({
@@ -77,30 +85,30 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
     });
   }
   
-  execCancellation() {
-    const listText = this.checkedTasks.join(";");
-    if (this.checkedTasks.length) {
-      try {
-        this.nuxeo.exec("TASK_CANCELLATION", {
-          body: {
-            params: {taskID: listText,},
-            context: {}
-          }
-        }).subscribe((data: any) => {
-          this.toastr.showToast("Success", "Operation was successfully executed.", "Task Cancellation");
-          this.checkedTasks = [];
-          this.fetchTasks();
-        })
-      } catch (e: any) {
-        this.toastr.showToast("Danger", "The request was aborted", "Task Cancellation")
-        console.log(e)
+  execCancellation(confirm: boolean) {
+    if (confirm) {
+      const listText = this.checkedTasks.join(";");
+      if (this.checkedTasks.length) {
+        try {
+          this.nuxeo.exec("TASK_CANCELLATION", {
+            body: {
+              params: {taskID: listText,},
+              context: {}
+            }
+          }).subscribe((data: any) => {
+            this.toastr.showToast("Success", "Operation was successfully executed.", "Task Cancellation");
+            this.checkedTasks = [];
+            this.fetchTasks();
+            this.showCancelModal = false;
+          })
+        } catch (e: any) {
+          this.toastr.showToast("Danger", "The request was aborted", "Task Cancellation")
+          console.log(e)
+          this.showCancelModal = false;
+        }
       }
-    }
-  }
-  
-  execDelegation() {
-    if (this.checkedTasks.length) {
-      this.toastr.showToast("Info", "This is a test", "Test");
+    } else {
+      this.showCancelModal = false;
     }
   }
   
@@ -149,5 +157,18 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
     } else {
       this.taskList = this.currentTaskList;
     }
+  }
+  
+  handleHideTaskDetail(event: boolean) {
+    this.selectedTask = "";
+  }
+  
+  handleShowTaskDetail(docID: string) {
+    this.selectedTask = docID;
+    this.checkedTasks = [];
+  }
+  
+  handleShowDelegationModal(confirm: boolean) {
+    this.showDelegationModal = confirm;
   }
 }

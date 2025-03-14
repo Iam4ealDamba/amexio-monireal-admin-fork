@@ -39,14 +39,14 @@ build/
 
 ### Folders ###
 nuxeo/
-documentation/
 nuxeo-admin-console-web/angular-app/src/environments
 *.angular
 *dist
 *.idea
 *node/
+*node_modules/
 
 ### Files ###
-.env
+.env.exemple
 rest/bruno/monireal_admin/collection.bru
 

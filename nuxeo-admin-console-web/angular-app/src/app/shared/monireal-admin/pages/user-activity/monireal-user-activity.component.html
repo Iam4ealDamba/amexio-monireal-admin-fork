@@ -3,7 +3,6 @@
                                       (getCurrentTab)="handleSelectedTab($event)"></app-monireal-tabs-list-component>
     <div aria-label="content" [ngSwitch]="currentTab" class="flex-1">
         <app-monireal-user-sessions-page-component *ngSwitchCase="1"></app-monireal-user-sessions-page-component>
-        <app-monireal-user-list-page-component *ngSwitchCase="2"></app-monireal-user-list-page-component>
         <app-monireal-user-sessions-page-component *ngSwitchDefault></app-monireal-user-sessions-page-component>
     </div>
 </section>

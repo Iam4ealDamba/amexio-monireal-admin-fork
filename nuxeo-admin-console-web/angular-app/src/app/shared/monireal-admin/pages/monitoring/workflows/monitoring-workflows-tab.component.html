@@ -1,4 +1,4 @@
-<section class="content">
+<section *ngIf="!this.selectedTask.length" class="content">
     <app-no-data *ngIf="!this.taskList.length"
                  text="Sorry, no opened task were retireve, please try later..."></app-no-data>
     <section *ngIf="this.taskList.length" class="flex justify-between items-center mt-4">
@@ -15,7 +15,8 @@
             <app-monireal-button-component
                     icon="heroTrashSolid"
                     [buttonStyle]="this.checkedTasks.length ? 'button-primary' : 'button-inactive'" title="Cancel"
-                    [disabled]="!this.checkedTasks.length"></app-monireal-button-component>
+                    [disabled]="!this.checkedTasks.length"
+                    (click)="this.showCancelModal = true"></app-monireal-button-component>
         </div>
     </section>
     <section *ngIf="this.taskList.length" class="w-full">
@@ -101,6 +102,13 @@
                     <ng-icon name="matErrorRound" class="text-sm button-{{this.handleDueDate(item.dueDate)}}"
                              *ngIf="this.handleDueDate(item.dueDate) === 'danger'"></ng-icon>
                 </td>
+                <td class="h-full">
+                    <div class="h-full flex items-center justify-center gap-x-2"
+                         (click)="this.handleShowTaskDetail(item.id)">
+                        <p>See doc</p>
+                        <ng-icon name="heroEyeSolid"></ng-icon>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
@@ -111,6 +119,18 @@
             [$taskList]="this.checkedTasks"
             [$nuxeo]="this.nuxeo"
             [$showModal]="this.showDelegationModal"
-            (emitShowModal)="this.showDelegationModal = $event"
+            (emitShowModal)="this.handleShowDelegationModal($event)"
     ></app-workflow-delegation-modal>
+</section>
+<section>
+    <app-task-detail-template-component *ngIf="this.selectedTask.length" [title]="this.pageTitle"
+                                        [description]="this.pageDetails"
+                                        [documentID]="this.selectedTask"
+                                        ($emitHideTemplate)="this.handleHideTaskDetail($event)"></app-task-detail-template-component>
+</section>
+<section *ngIf="showCancelModal">
+    <app-confirm-modal-component [title]="this.cancelTitle"
+                                 [description]="this.canceldescription"
+                                 ($sendResponse)="this.execCancellation($event)"
+    ></app-confirm-modal-component>
 </section>

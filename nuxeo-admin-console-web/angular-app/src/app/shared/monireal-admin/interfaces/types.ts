@@ -65,6 +65,7 @@ export type EndpointName = {
   ELASTIC_REINDEX_DOCUMENT: 'ELASTIC_REINDEX_DOCUMENT';
   ELASTIC_REINDEX_FLUSH: 'ELASTIC_REINDEX_FLUSH';
   ELASTIC_REINDEX_OPTIMIZE: 'ELASTIC_REINDEX_OPTIMIZE';
+  WORKFLOW_TASK_DETAIL: "WORKFLOW_TASK_DETAIL";
 };
 export type TabsType = {
   id: number;
@@ -157,6 +158,19 @@ export type DocumentDetailType = {
   id: string,
   state: string,
   contributors: string[],
+  type: string,
+  title: string,
+  repository: string
+}
+
+export type TaskDetailType = {
+  path: string,
+  creator: string,
+  created: number,
+  modified: number,
+  id: string,
+  state: string,
+  delegatedActors: string[],
   type: string,
   title: string,
   repository: string

@@ -66,11 +66,10 @@ export class WorkflowDelegationModalComponent implements OnInit {
   }
   
   handleDelegation() {
-    
     for (const task of this.$taskList) {
-      let query = `/${task}delegate?`;
+      let query = `/${task}/delegate?`;
       for (const user of this.userList) {
-        query += `/${task}?delegatedActors=${user}&`;
+        query += `delegatedActors=${user}&`;
       }
       
       try {

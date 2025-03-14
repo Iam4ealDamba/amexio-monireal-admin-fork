@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<component name="fr.amexio.monireal.operations.monireal-op-document-details-contrib">
+<component name="fr.amexio.monireal.operations.document-details-contrib">
 
   <extension point="operations" target="org.nuxeo.ecm.core.operation.OperationServiceComponent">
     <operation class="fr.amexio.monireal.operations.MonirealDocumentDetailsOP"/>

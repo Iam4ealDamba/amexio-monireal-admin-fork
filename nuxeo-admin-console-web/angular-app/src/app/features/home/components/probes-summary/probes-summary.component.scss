@@ -1,0 +1,19 @@
+.probes-summary mat-card {
+  height: 100% !important;
+  button {
+    border-radius: 4px;
+    width: 79px;
+    height: 36px;
+    position: absolute;
+    bottom: 8%;
+    right: 4%;
+  }
+}
+
+::ng-deep .probes-data {
+  height: 100% !important;
+}
+
+::ng-deep .probes-data {
+  padding: 20px !important;
+}

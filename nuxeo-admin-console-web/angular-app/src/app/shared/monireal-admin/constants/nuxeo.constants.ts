@@ -77,11 +77,16 @@ export const REST_ENDPOINTS = {
   WORKFLOWS_DELEGATION: {
     method: "PUT",
     endpoint: "/task",
-    urlType: "base"
+    urlType: "api"
   },
   DOCUMENT_DETAIL: {
     method: "POST",
     endpoint: "/Monireal.documentDetails",
+    urlType: "base"
+  },
+  WORKFLOW_TASK_DETAIL: {
+    method: "POST",
+    endpoint: "/Monireal.WorkflowTaskDetails",
     urlType: "base"
   }
 };

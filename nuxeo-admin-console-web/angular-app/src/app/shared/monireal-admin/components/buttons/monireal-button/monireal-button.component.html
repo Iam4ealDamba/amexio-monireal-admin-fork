@@ -1,4 +1,4 @@
-<button class="flex items-center justify-center {{ this.buttonStyle }}" type="{{this.type}}" [disabled]="this.disabled">
+<button class="flex items-center justify-center min-w-[120px] {{ this.buttonStyle }}" type="{{this.type}}" [disabled]="this.disabled">
     <ng-icon *ngIf="this.icon.length" [name]="this.icon"></ng-icon>
-    <p>{{ this.title }}</p>
+    <p class="w-full text-center">{{ this.title }}</p>
 </button>

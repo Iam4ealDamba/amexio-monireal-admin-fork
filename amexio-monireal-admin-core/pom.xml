@@ -5,6 +5,7 @@
     <groupId>fr.amexio.monireal</groupId>
     <artifactId>amexio-monireal-admin</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>amexio-monireal-admin-core</artifactId>

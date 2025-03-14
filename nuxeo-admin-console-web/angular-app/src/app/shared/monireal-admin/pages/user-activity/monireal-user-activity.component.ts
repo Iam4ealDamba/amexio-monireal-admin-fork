@@ -18,14 +18,13 @@ import {NoDataComponent} from "../../templates/no-data/no-data.component";
 import {MonirealTabsListComponent} from "../../components/tabs-list/tabs-list.component";
 import {MonitoringWorkflowsTabComponent} from "../monitoring/workflows/monitoring-workflows-tab.component";
 import {MonirealUserSessionsPageComponent} from "./user-sessions/user-sessions.component";
-import {MonirealUserListPageComponent} from "./user-list/user-list.component";
 
 
 @Component({
   selector: "app-user-activities",
   templateUrl: "./monireal-user-activity.component.html",
   styleUrls: ["./monireal-user-activity.component.scss"],
-  imports: [CommonModule, NgxPaginationModule, MatIconModule, MatProgressSpinnerModule, ReactiveFormsModule, NgIcon, NoDataComponent, MonirealTabsListComponent, MonitoringWorkflowsTabComponent, MonirealUserSessionsPageComponent, MonirealUserListPageComponent],
+  imports: [CommonModule, NgxPaginationModule, MatIconModule, MatProgressSpinnerModule, ReactiveFormsModule, NgIcon, NoDataComponent, MonirealTabsListComponent, MonitoringWorkflowsTabComponent, MonirealUserSessionsPageComponent],
   providers: [Router, NuxeoCliService],
   viewProviders: [provideIcons({heroTrash, heroPaperAirplaneSolid})],
   standalone: true,
@@ -40,11 +39,6 @@ export class MonirealUserActivityPageComponent {
       name: "User Sessions",
       active: true
     },
-    {
-      id: 2,
-      name: "User List",
-      active: false
-    }
   ]
   currentTab = 1;
   

@@ -6,8 +6,7 @@ Bundle-Name: Amexio Monireal Admin Core
 Bundle-Version: 1.0-SNAPSHOT
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: fr.amexio.monireal.amexio-monireal-admin-core;singleton=true
-Nuxeo-Component: OSGI-INF/monireal-op-jvm-status-contrib.xml,
- OSGI-INF/monireal-op-health-status-contrib.xml,
+Nuxeo-Component: OSGI-INF/monireal-op-jvm-status-contrib.xml,OSGI-INF/monireal-op-health-status-contrib.xml,
  OSGI-INF/monireal-op-elastic-audit-contrib.xml,
  OSGI-INF/monireal-op-session-info-contrib.xml,
  OSGI-INF/monireal-op-session-event-contrib.xml,
@@ -19,4 +18,5 @@ Nuxeo-Component: OSGI-INF/monireal-op-jvm-status-contrib.xml,
  OSGI-INF/monireal-op-task-cancellation-contrib.xml,
  OSGI-INF/monireal-op-task-details-contrib.xml,
  OSGI-INF/monireal-op-task-delegation-contrib.xml,
- OSGI-INF/monireal-op-document-details-contrib.xml
+ OSGI-INF/monireal-op-document-details-contrib.xml,
+ OSGI-INF/monireal-op-workflow-task-details-contrib.xml

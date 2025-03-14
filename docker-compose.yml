@@ -1,20 +1,19 @@
 # ------------ NAME ------------
-name: amexio-monireal-admin
+name: <ADD_CONTAINER_PARENT_NAME_HERE>
 
 # ------------ SERVICES ------------
 services:
   # Database
-  monireal-psql:
+  <ADD_PROJECT_NAME_HERE>-psql:
     image: postgres:13
-    container_name: monireal-psql
-    env_file: .env
+    container_name: <ADD_PROJECT_NAME_HERE>-psql
     restart: on-failure
     ports:
       - ${DB_PG_PORT}
     networks:
-      - monireal
+      - <ADD_PROJECT_NAME_HERE>
     volumes:
-      - amexio-monireal-admin-psql-data:/var/lib/postgresql/data
+      - amexio-<ADD_PROJECT_NAME_HERE>-admin-psql-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: ${DB_PWD}
       POSTGRES_USER: ${DB_USER}
@@ -24,18 +23,17 @@ services:
       timeout: 5s
       retries: 5
   # Elasticsearch
-  monireal-elastic:
+  <ADD_PROJECT_NAME_HERE>-elastic:
     image: elasticsearch:7.17.22
-    container_name: monireal-elastic
-    env_file: .env
+    container_name: <ADD_PROJECT_NAME_HERE>-elastic
     restart: on-failure
     ports:
       - ${ES_PORT}
     networks:
-      - monireal
+      - <ADD_PROJECT_NAME_HERE>
     volumes:
-      - amexio-monireal-admin-elastic-data:/usr/share/elasticsearch/data
-      - amexio-monireal-admin-elastic-logs:/usr/share/elasticsearch/logs
+      - amexio-<ADD_PROJECT_NAME_HERE>-admin-elastic-data:/usr/share/elasticsearch/data
+      - amexio-<ADD_PROJECT_NAME_HERE>-admin-elastic-logs:/usr/share/elasticsearch/logs
     environment:
       - TZ=${TZ}
       - node.name=${ES_NODE_NAME}
@@ -52,29 +50,29 @@ services:
       timeout: 5s
       retries: 3
   # Nuxeo
-  monireal:
+  <ADD_PROJECT_NAME_HERE>:
     image: ${NX_IMG}
-    container_name: monireal
+    container_name: <ADD_PROJECT_NAME_HERE>
     restart: on-failure
-    env_file: .env
+    env_file: .env.exemple
     stdin_open: true
     tty: true
     depends_on:
-      monireal-psql:
+      <ADD_PROJECT_NAME_HERE>-psql:
         condition: service_healthy
-      monireal-elastic:
+      <ADD_PROJECT_NAME_HERE>-elastic:
         condition: service_healthy
     ports:
       - ${NX_PORT}:8080
     networks:
-      - monireal
+      - <ADD_PROJECT_NAME_HERE>
     volumes:
-      - amexio-monireal-admin-logs:/var/log/nuxeo
-      - amexio-monireal-admin-data:/var/lib/nuxeo
-      - amexio-monireal-admin-tmp:/tmp
-      - ./nuxeo/conf/conf.d:/etc/nuxeo/conf.d
-      - ./nuxeo/home:/home/bundles
-      - ./nuxeo/packages:/opt/nuxeo/server/packages/store
+      - amexio-<ADD_PROJECT_NAME_HERE>-admin-logs:/var/log/nuxeo
+      - amexio-<ADD_PROJECT_NAME_HERE>-admin-data:/var/lib/nuxeo
+      - amexio-<ADD_PROJECT_NAME_HERE>-admin-tmp:/tmp
+      - ./nuxeo/conf.d:/etc/nuxeo/conf.d
+      - ./nuxeo/bundles/to_install:/home/bundles
+      - ./nuxeo/bundles/store:/opt/nuxeo/server/packages/store
     environment:
       # ------------ NUXEO ------------
       JAVA_OPTS: -XshowSettings:vm
@@ -84,17 +82,17 @@ services:
 
 # ------------ NETWORKS ------------
 networks:
-  monireal:
+  <ADD_PROJECT_NAME_HERE>:
     driver: bridge
-    name: monireal
+    name: <ADD_PROJECT_NAME_HERE>
     external: true
 
 # ------------ VOLUMES ------------
 volumes:
-  amexio-monireal-admin-psql-data:
-  amexio-monireal-admin-elastic-data:
-  amexio-monireal-admin-elastic-logs:
-  amexio-monireal-admin-logs:
-  amexio-monireal-admin-pid:
-  amexio-monireal-admin-data:
-  amexio-monireal-admin-tmp:
+  amexio-<ADD_PROJECT_NAME_HERE>-admin-psql-data:
+  amexio-<ADD_PROJECT_NAME_HERE>-admin-elastic-data:
+  amexio-<ADD_PROJECT_NAME_HERE>-admin-elastic-logs:
+  amexio-<ADD_PROJECT_NAME_HERE>-admin-logs:
+  amexio-<ADD_PROJECT_NAME_HERE>-admin-pid:
+  amexio-<ADD_PROJECT_NAME_HERE>-admin-data:
+  amexio-<ADD_PROJECT_NAME_HERE>-admin-tmp:

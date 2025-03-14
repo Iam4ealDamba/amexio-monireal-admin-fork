@@ -1,0 +1,67 @@
+<section aria-label="tab-sub-content" class="sub-content">
+    <app-no-data *ngIf="!this.isLoading && !this.taskDetail.id"></app-no-data>
+    <section *ngIf="!this.isLoading && this.taskDetail.id"
+             class="flex justify-between items-center bg-transparent p-4">
+        <div label="title">
+            <h1>{{ this.title }}</h1>
+            <h3>{{ this.description }}</h3>
+        </div>
+        <div>
+            <app-monireal-button-component title="Return Back" icon="matArrowBack"
+                                           (click)="this.handleHideTemplate()"></app-monireal-button-component>
+        </div>
+    </section>
+    <div *ngIf="!this.isLoading && this.taskDetail.id" class="flex justify-between items-center">
+        <div class="w-full flex-1">
+            <h3 class="!font-semibold">Title - {{ this.taskDetail.title }}</h3>
+            <h4>ID - {{ this.taskDetail.id }}</h4>
+        </div>
+        <div>
+            <app-monireal-link-button-component title="Go to doc" icon="matOpenInNew" url="{{this.taskDetail.path}}"
+                                                buttonStyle="button-primary"
+                                                [externalLink]="true"></app-monireal-link-button-component>
+        </div>
+    </div>
+    <section class="flex w-full gap-x-6">
+        <div class="w-full flex-1 space-y-6 px-4 py-8 bg-tw-text-white shadow-md shadow-tw-text-black/30">
+            <div aria-label="top">
+                <h4 class="!font-semibold">Delegated List</h4>
+            </div>
+            <ul *ngIf="taskDetail.delegatedActors.length"  class="overflow-y-auto max-h-[210px]">
+                <li *ngFor="let actor of this.taskDetail.delegatedActors">
+                    <p>{{ actor }}</p>
+                </li>
+            </ul>
+            <div *ngIf="!taskDetail.delegatedActors.length" class="overflow-y-auto max-h-[210px]">
+                <p>This list is empty.</p>
+            </div>
+        </div>
+        <div class="w-full max-w-[380px] space-y-6 px-4 py-8 bg-tw-text-white shadow-md shadow-tw-text-black/30">
+            <div aria-label="top">
+                <h4 class="text-center !font-semibold">Document detail</h4>
+            </div>
+            <ul aria-label="bottom" class="">
+                <li>
+                    <h5>Creator</h5>
+                    <p>{{ this.taskDetail.creator }}</p>
+                </li>
+                <li>
+                    <h5>Created</h5>
+                    <p>{{ this.taskDetail.created | date:'dd/MM/yyyy' }}</p>
+                </li>
+                <li>
+                    <h5>Modified</h5>
+                    <p>{{ this.taskDetail.modified | date:'dd/MM/yyyy' }}</p>
+                </li>
+                <li>
+                    <h5>State</h5>
+                    <p>{{ this.taskDetail.state }}</p>
+                </li>
+                <li>
+                    <h5>Type</h5>
+                    <p>{{ this.taskDetail.type }}</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+</section>

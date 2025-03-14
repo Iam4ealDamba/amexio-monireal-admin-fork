@@ -50,7 +50,7 @@
         <h5>Use this to make sure Elasticsearch flush its indexes to disk.</h5>
         <div class="query-div">
             <app-monireal-button-component title="Execute" type="submit"
-                                           (click)="execFlush()"
+                                           (click)="this.showFlushModal = true"
                                            buttonStyle="button-primary"
                                            icon="matSearch"></app-monireal-button-component>
             <!-- <p>{{ this.audit.query }}</p> -->
@@ -68,9 +68,21 @@
         <div class="query-div">
             <app-monireal-button-component title="Execute" type="submit"
                                            buttonStyle="button-primary"
-                                           (click)="execOptimize()"
+                                           (click)="this.showOptimizeModal = true"
                                            icon="matSearch"></app-monireal-button-component>
             <!-- <p>{{ this.audit.query }}</p> -->
         </div>
     </div>
+</section>
+<section *ngIf="showFlushModal">
+    <app-confirm-modal-component [title]="this.flushTitle"
+                                 [description]="this.flushdescription"
+                                 ($sendResponse)="this.execFlush($event)"
+    ></app-confirm-modal-component>
+</section>
+<section *ngIf="showOptimizeModal">
+    <app-confirm-modal-component [title]="this.optimizeTitle"
+                                 [description]="this.optimizedescription"
+                                 ($sendResponse)="this.execOptimize($event)"
+    ></app-confirm-modal-component>
 </section>
