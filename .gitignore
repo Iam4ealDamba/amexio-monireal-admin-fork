@@ -47,6 +47,7 @@ nuxeo-admin-console-web/angular-app/src/environments
 *node_modules/
 
 ### Files ###
-.env.exemple
+.env
+docker-compose.yml
 rest/bruno/monireal_admin/collection.bru
 
