@@ -90,17 +90,19 @@
                         <ng-icon name="heroLink" class="text-sm"></ng-icon>
                     </div>
                 </td>
-                <td>{{ item.creator }}</td>
-                <td>{{ item.modified | date : "short" }}</td>
-                <td *ngIf="this.dueDays > 0">{{ this.dueDays > 1 ? this.dueDays + " days" : this.dueDays + " day" }}</td>
-                <td *ngIf="this.dueDays <= 0">Expired</td>
+                <td class="truncate text-ellipsis">{{ item.creator.length >= 20 ? item.creator.substring(0, 20) + "..." : item.creator }}</td>
+                <td class="truncate text-ellipsis">{{ item.modified | date : "short" }}</td>
+                <td class="truncate text-ellipsis"
+                    *ngIf="this.handleDueDate(item.dueDate) > 0">{{ this.dueDays > 1 ? this.handleDueDate(item.dueDate) + " days" : this.handleDueDate(item.dueDate) + " day" }}
+                </td>
+                <td class="truncate text-ellipsis" *ngIf="this.handleDueDate(item.dueDate) <= 0">Expired</td>
                 <td>
-                    <ng-icon name="matCheckCircle" class="text-sm button-{{this.handleDueDate(item.dueDate)}}"
-                             *ngIf="this.handleDueDate(item.dueDate) === 'success'"></ng-icon>
-                    <ng-icon name="matWarningRound" class="text-sm button-{{this.handleDueDate(item.dueDate)}}"
-                             *ngIf="this.handleDueDate(item.dueDate) === 'warning'"></ng-icon>
-                    <ng-icon name="matErrorRound" class="text-sm button-{{this.handleDueDate(item.dueDate)}}"
-                             *ngIf="this.handleDueDate(item.dueDate) === 'danger'"></ng-icon>
+                    <ng-icon name="matCheckCircle" class="text-sm button-{{this.handleDueDateIcon(item.dueDate)}}"
+                             *ngIf="this.handleDueDateIcon(item.dueDate) === 'success'"></ng-icon>
+                    <ng-icon name="matWarningRound" class="text-sm button-{{this.handleDueDateIcon(item.dueDate)}}"
+                             *ngIf="this.handleDueDateIcon(item.dueDate) === 'warning'"></ng-icon>
+                    <ng-icon name="matErrorRound" class="text-sm button-{{this.handleDueDateIcon(item.dueDate)}}"
+                             *ngIf="this.handleDueDateIcon(item.dueDate) === 'danger'"></ng-icon>
                 </td>
                 <td class="h-full">
                     <div class="h-full flex items-center justify-center gap-x-2"
