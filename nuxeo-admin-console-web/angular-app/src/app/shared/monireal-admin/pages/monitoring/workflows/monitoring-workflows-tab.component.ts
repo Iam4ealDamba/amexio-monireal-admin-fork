@@ -62,7 +62,7 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (this.taskList.length) {
       this.taskList = this.taskList.map((occurence) => {
-        occurence.state = this.handleDueDate(occurence.dueDate);
+        occurence.state = this.handleDueDateIcon(occurence.dueDate);
         return occurence;
       })
     }
@@ -79,7 +79,7 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
         this.taskList[i].path =
           baseURL + '/ui/#!/tasks/' + this.taskList[i].id;
         this.taskList[i].dueDate = new Date(this.taskList[i].dueDate);
-        this.taskList[i].state = this.handleDueDate(this.taskList[i].dueDate);
+        this.taskList[i].state = this.handleDueDateIcon(this.taskList[i].dueDate);
       }
       this.currentTaskList = this.taskList;
     });
@@ -112,7 +112,7 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
     }
   }
   
-  handleDueDate(_dueDate: Date) {
+  handleDueDateIcon(_dueDate: Date) {
     const dueDateTime = _dueDate.getTime();
     const nowTime = new Date().getTime();
     const diffTime = dueDateTime - nowTime;
@@ -134,6 +134,15 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
     this.dueDays = diffDays;
     
     return result;
+  }
+  
+  handleDueDate(_dueDate: Date) {
+    const dueDateTime = _dueDate.getTime();
+    const nowTime = new Date().getTime();
+    const diffTime = dueDateTime - nowTime;
+    const diffDays = Math.round(diffTime / (1000 * 3600 * 24));
+    
+    return diffDays;
   }
   
   handleCheckedItem(itemId: string) {
