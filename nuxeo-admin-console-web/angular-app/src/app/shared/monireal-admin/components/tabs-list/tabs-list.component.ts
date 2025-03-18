@@ -2,6 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CommonModule, NgForOf} from "@angular/common";
 import {TabsType} from "../../interfaces/types";
 
+/**
+ * A component that represent a tab list for page navigation
+ */
 @Component({
   selector: "app-monireal-tabs-list-component",
   templateUrl: "./tabs-list.component.html",

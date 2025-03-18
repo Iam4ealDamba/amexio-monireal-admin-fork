@@ -2,6 +2,9 @@ import {Component, Input} from '@angular/core';
 import {IconType, NgIconComponent} from "@ng-icons/core";
 import {CommonModule} from "@angular/common";
 
+/**
+ * A customized link button made with TailwindCSS and NgIcons
+ */
 @Component({
   selector: "app-monireal-link-button-component",
   templateUrl: "./monireal-link-button.component.html",
@@ -14,7 +17,7 @@ export class MonirealLinkButtonComponent {
   // Events
   //---------------------------
   @Input({required: true}) title = "";
-  @Input() type: "submit" | "reset" | "button"  = "button";
+  @Input() type: "submit" | "reset" | "button" = "button";
   @Input() url = "";
   @Input() icon = "";
   @Input() externalLink = false;
@@ -23,11 +26,4 @@ export class MonirealLinkButtonComponent {
   //---------------------------
   // Constructor
   //---------------------------
-
-  //---------------------------
-  // Functions
-  //---------------------------
-  
-  exampleFunction() {
-  }
 }

@@ -2,12 +2,12 @@ package fr.amexio.monireal.operations;
 
 import fr.amexio.monireal.constants.MonirealConstants;
 
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.json.JSONObject;
 import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
-import org.nuxeo.ecm.automation.core.annotations.Param;
 import org.nuxeo.ecm.core.api.impl.blob.JSONBlob;
 import org.nuxeo.ecm.core.api.Blob;
 import org.nuxeo.ecm.core.api.CoreSession;
@@ -26,13 +26,18 @@ import java.util.stream.Collectors;
  */
 @Operation(id = MonirealElasticAudit.ID, category = MonirealConstants.MONIREAL, label = "ElasticSearch Audit", description = "Retrieve ElasticSearch de-sync audit.")
 public class MonirealElasticAudit {
-
+    /**
+     * Request Identifier
+     */
     public static final String ID = MonirealConstants.MONIREAL + ".getElasticAudit";
 
     protected static final String DEFAULT_CHECK_SEARCH_NXQL = "SELECT * FROM Document WHERE ecm:mixinType != 'HiddenInNavigation' AND ecm:isProxy = 0 AND ecm:isVersion = 0 AND ecm:isTrashed = 0";
 
     @Context
     protected CoreSession session;
+
+    @Context
+    protected OperationContext ctx;
 
     /**
      * Extract result from ElasticSearch Audit
@@ -71,10 +76,13 @@ public class MonirealElasticAudit {
 
     @OperationMethod
     public Blob run() {
+        // Verify if the user has right access
+        AuthAccessUtils.checkAccess(ctx);
+
         String nxql = DEFAULT_CHECK_SEARCH_NXQL;
         Map<String, Serializable> repoSearch = extractResultInfo("nxql_repo_search", nxql);
         Map<String, Serializable> elasticSearch = extractResultInfo("nxql_elastic_search", nxql);
-        JSONObject json = new JSONObject();
+        JSONObject result = new JSONObject();
 
         @SuppressWarnings("unchecked")
         List<String> repoResults = (List<String>) repoSearch.get("results");
@@ -83,10 +91,10 @@ public class MonirealElasticAudit {
 
         if (repoResults != null && elasticResults != null) {
             // Json data insertion
-            json.put("query", nxql);
-            json.put("repoSearch", repoSearch);
-            json.put("elasticSearch", elasticSearch);
-            return new JSONBlob(json.toString());
+            result.put("query", nxql);
+            result.put("repoSearch", repoSearch);
+            result.put("elasticSearch", elasticSearch);
+            return new JSONBlob(result.toString());
         } else {
             return null;
         }

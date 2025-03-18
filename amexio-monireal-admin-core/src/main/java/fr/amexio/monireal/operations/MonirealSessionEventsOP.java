@@ -1,8 +1,10 @@
 package fr.amexio.monireal.operations;
 
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.jboss.seam.ScopeType;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -29,6 +31,9 @@ public class MonirealSessionEventsOP {
   @Context
   protected CoreSession session;
 
+  @Context
+  protected OperationContext ctx;
+
   // Audit Variables
   protected String selectedAuditTimeRange;
   protected String selectedAuditCategory;
@@ -43,7 +48,7 @@ public class MonirealSessionEventsOP {
   protected int perPage = 10;
 
   @Param(name = "dateRange", required = false, values = {"all", "1d", "1w", "1m",
-      "1y"})
+      "1y"}, description = "The date range to display")
   protected String dateRange = "all";
 
   // *********************************
@@ -101,6 +106,9 @@ public class MonirealSessionEventsOP {
 
   @OperationMethod
   public Blob run() {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     try {
       List<LogEntry> loginInfo = getSessionEvents();
       JSONObject json = new JSONObject();

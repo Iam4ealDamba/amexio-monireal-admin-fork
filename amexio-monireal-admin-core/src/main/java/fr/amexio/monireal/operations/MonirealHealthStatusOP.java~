@@ -3,7 +3,9 @@ package fr.amexio.monireal.operations;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -28,10 +30,13 @@ import java.util.Optional;
 @Operation(id = MonirealHealthStatusOP.ID, category = MonirealConstants.MONIREAL, label = "Health Status", description = "Start probes opération and return the result.")
 public class MonirealHealthStatusOP {
 
-  public static final String ID = "Monireal.getHealthStatus";
+  public static final String ID = MonirealConstants.MONIREAL + ".getHealthStatus";
 
   @Context
   protected CoreSession session;
+
+  @Context
+  protected OperationContext ctx;
 
   @Context
   protected ProbeManager manager;
@@ -56,6 +61,9 @@ public class MonirealHealthStatusOP {
 
   @OperationMethod
   public Blob run() throws IOException, URISyntaxException, InterruptedException {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     List<ProbeInfo> probes = getAllProbes();
     List<ProbeInfo> result = new ArrayList<>();
 

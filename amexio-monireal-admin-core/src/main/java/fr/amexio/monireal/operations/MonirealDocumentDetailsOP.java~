@@ -31,7 +31,7 @@ public class MonirealDocumentDetailsOP {
   @Context
   protected CoreSession session;
 
-  @Param(name = "docID", required = true, values = StringUtils.EMPTY, description = "The document ID")
+  @Param(name = "docID", required = true, values = StringUtils.EMPTY)
   protected String docID;
 
   @OperationMethod

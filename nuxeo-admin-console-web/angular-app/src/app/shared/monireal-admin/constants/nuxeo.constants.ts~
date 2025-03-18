@@ -86,7 +86,7 @@ export const REST_ENDPOINTS = {
   },
   WORKFLOW_TASK_DETAIL: {
     method: "POST",
-    endpoint: "/Monireal.workflowTaskDetails",
+    endpoint: "/Monireal.WorkflowTaskDetails",
     urlType: "base"
   }
 };

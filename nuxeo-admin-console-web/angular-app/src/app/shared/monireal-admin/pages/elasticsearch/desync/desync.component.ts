@@ -8,6 +8,9 @@ import {
 import {ChartConfiguration} from 'chart.js';
 import {NgChartsModule} from "ng2-charts";
 
+/**
+ * Component for desync tab from ElasticSearch indexes
+ */
 @Component({
   selector: 'app-desync-tab',
   imports: [NgxPaginationModule, CommonModule, NgChartsModule],
@@ -34,6 +37,9 @@ export class DesyncTabComponent implements OnChanges {
     }
   }
   
+  /**
+   * Fetch indexes from Repository and ElasticSearch
+   */
   loadData() {
     this.repository = this.$data?.repoSearch as ElasticSearchAuditResultInterface;
     this.elasticSearch = this.$data?.elasticSearch as ElasticSearchAuditResultInterface;

@@ -1,7 +1,9 @@
 package fr.amexio.monireal.operations;
 
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -21,8 +23,14 @@ public class MonirealSessionInfoOP {
   @Context
   protected CoreSession session;
 
+  @Context
+  protected OperationContext ctx;
+
   @OperationMethod
   public Blob run() {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     JSONObject json = new JSONObject();
     json.put("totalRequests", NuxeoHttpSessionMonitor.instance().getGlobalRequestCounter());
     json.put("activeSessionsCount", NuxeoHttpSessionMonitor.instance().getSortedSessions().size());

@@ -1,8 +1,10 @@
 package fr.amexio.monireal.operations;
 
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -15,9 +17,9 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
- *
+ * This request returns the details of a task
  */
-@Operation(id = MonirealTaskDetailsOP.ID, category = MonirealConstants.MONIREAL, label = "Task Detail", description = "Describe here what your operation does.")
+@Operation(id = MonirealTaskDetailsOP.ID, category = MonirealConstants.MONIREAL, label = "Task Detail", description = "This request returns the details of a task")
 public class MonirealTaskDetailsOP {
 
   public static final String ID = MonirealConstants.MONIREAL + ".TaskDetail";
@@ -25,11 +27,17 @@ public class MonirealTaskDetailsOP {
   @Context
   protected CoreSession session;
 
+  @Context
+  protected OperationContext ctx;
+
   @Param(name = "taskID", required = false)
   protected String taskID;
 
   @OperationMethod
   public Blob run() {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     String query = MonirealConstants.DEFAULT_NXQL_TASK_DETAIL + " '" + taskID + "'";
     JSONObject json = new JSONObject();
 

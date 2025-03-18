@@ -4,6 +4,7 @@ import {MonirealMenuBarComponent} from "../layout/monireal-menu-bar/monireal-men
 import {NgChartsModule} from "ng2-charts";
 import {MonirealButtonComponent} from "../components/buttons/monireal-button/monireal-button.component";
 import {MonirealLinkButtonComponent} from "../components/buttons/monireal-link-button/monireal-link-button.component";
+import {MonirealTabsListComponent} from "../components/tabs-list/tabs-list.component";
 
 export const MonirealModuleComponent: any[] = [
   // Components
@@ -12,6 +13,7 @@ export const MonirealModuleComponent: any[] = [
   MonirealMenuBarComponent,
   MonirealButtonComponent,
   MonirealLinkButtonComponent,
+  MonirealTabsListComponent,
   // Modules
   NgChartsModule
 ]
