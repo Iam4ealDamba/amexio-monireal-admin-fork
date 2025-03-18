@@ -23,9 +23,9 @@ import {ADMIN_MENU, Menu} from "src/app/layouts/menu-bar/menu-bar.constants";
   standalone: true,
 })
 export class MonirealMenuBarComponent implements OnInit {
-  //
+  // -----------------------
   // Variables
-  //
+  // -----------------------
   is_dropdown = false;
   adminConsoleMenu: Menu[] = ADMIN_MENU;
   monirealMenu: MoniMenu[] = MONI_ADMIN_MENU;
@@ -47,9 +47,14 @@ export class MonirealMenuBarComponent implements OnInit {
     this.bottomMenuList = this.getAllBottomItemMenu();
   }
   
-  //
+  // -----------------------
   // Functions
-  //
+  // -----------------------
+  
+  /**
+   *  Select a item in the menu
+   * @param id
+   */
   menuItemSelected(id: number): void {
     this.monirealMenu = this.monirealMenu.map((item) => ({
       ...item,
@@ -57,10 +62,19 @@ export class MonirealMenuBarComponent implements OnInit {
     }));
   }
   
+  /**
+   * Toggles the dropdown menu when the top menu bar is clicked.
+   * It shows or hides the bottom menu depending on the state of the dropdown menu.
+   */
   toggleDropdownMenu() {
     this.is_dropdown = !this.is_dropdown;
   }
   
+  /**
+   *  Returns all the items in the top menu bar of the aside bar component.
+   *  The top menu bar is the menu that is always visible and is part of the original Nuxeo Admin Console.
+   *  The function returns the list.
+   */
   getAllTopItemMenu() {
     const list = [];
     
@@ -76,6 +90,13 @@ export class MonirealMenuBarComponent implements OnInit {
     return list;
   }
   
+  /**
+   * Retrieves all the items in the bottom menu bar of the aside bar component.
+   * The bottom menu bar is part of the dropdown menu, which can be toggled.
+   * This function iterates over the Monireal Admin menu array and constructs a list of menu items.
+   *
+   * @returns An array of objects representing the items in the bottom menu bar.
+   */
   getAllBottomItemMenu() {
     const list = [];
     
@@ -89,9 +110,5 @@ export class MonirealMenuBarComponent implements OnInit {
     }
     
     return list;
-  }
-  
-  getItemById(id: number) {
-    return this.monirealMenu.find((el) => el.id == id);
   }
 }

@@ -126,12 +126,12 @@
     ></app-workflow-delegation-modal>
 </section>
 <section>
-    <app-task-detail-template-component *ngIf="!this.isLoading && this.selectedTask.length" [title]="this.pageTitle"
+    <app-task-detail-template-component *ngIf=" !this.isLoading && this.selectedTask.length" [title]="this.pageTitle"
                                         [description]="this.pageDetails"
                                         [documentID]="this.selectedTask"
                                         ($emitHideTemplate)="this.handleHideTaskDetail($event)"></app-task-detail-template-component>
 </section>
-<section *ngIf="!this.isLoading && showCancelModal">
+<section *ngIf=" !this.isLoading && showCancelModal">
     <app-confirm-modal-component [title]="this.cancelTitle"
                                  [description]="this.canceldescription"
                                  ($sendResponse)="this.execCancellation($event)"

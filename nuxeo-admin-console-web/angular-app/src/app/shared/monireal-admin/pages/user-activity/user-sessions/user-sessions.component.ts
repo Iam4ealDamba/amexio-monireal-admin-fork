@@ -6,6 +6,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {NgForOf, NgIf} from "@angular/common";
 import {NgxPaginationModule} from "ngx-pagination";
 import {NoDataComponent} from "../../../templates/no-data/no-data.component";
+import {LoadingTemplateComponent} from "../../../templates/loading/loading.component";
 
 @Component({
   selector: "app-monireal-user-sessions-page-component",
@@ -18,7 +19,8 @@ import {NoDataComponent} from "../../../templates/no-data/no-data.component";
     NgIf,
     NgxPaginationModule,
     NoDataComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LoadingTemplateComponent
   ]
 })
 export class MonirealUserSessionsPageComponent {

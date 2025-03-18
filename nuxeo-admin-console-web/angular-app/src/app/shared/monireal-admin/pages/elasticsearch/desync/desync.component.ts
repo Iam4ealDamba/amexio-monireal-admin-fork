@@ -47,6 +47,14 @@ export class DesyncTabComponent implements OnChanges {
   }
   
   
+  /**
+   * Set up data for chart
+   *
+   * This function will generate the data for two bar charts. The first chart
+   * will display the time it took for each index to be searched, in milliseconds.
+   * The second chart will display the number of indexes found in each search.
+   *
+   */
   setupChartData() {
     this.timeChartData = {
       labels: ['In millisecond (ms)'],
@@ -78,9 +86,5 @@ export class DesyncTabComponent implements OnChanges {
         },
       ],
     };
-  }
-  
-  pageChanged(e: number) {
-    this.currentPage = e;
   }
 }

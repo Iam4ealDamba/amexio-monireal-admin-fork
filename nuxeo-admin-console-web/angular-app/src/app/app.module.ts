@@ -111,6 +111,7 @@ import {MonirealModuleComponent} from "./shared/monireal-admin/modules/monireal-
     ProbesDataModule,
     GenericMultiFeatureLayoutModule,
     MatDialogModule,
+    // This is required for the monireal module
     MonirealModuleComponent
   ],
   providers: [

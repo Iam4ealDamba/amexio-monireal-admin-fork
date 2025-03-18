@@ -2,9 +2,7 @@
     <app-monireal-tabs-list-component [tabs]="tabs" [currentTab]="currentTab"
                                       (getCurrentTab)="handleSelectedTab($event)"></app-monireal-tabs-list-component>
 
-    <section class="h-full">
-        <app-loading-template-component *ngIf="this.isLoading"></app-loading-template-component>
-    </section>
+    <app-loading-template-component *ngIf="this.isLoading"></app-loading-template-component>
     <div *ngIf="!this.isLoading" [ngSwitch]="currentTab">
         <app-desync-tab [$data]="this.audit" *ngSwitchCase="1"></app-desync-tab>
         <app-repo-tab [data]="this.audit.repoSearch.results" *ngSwitchCase="2"></app-repo-tab>

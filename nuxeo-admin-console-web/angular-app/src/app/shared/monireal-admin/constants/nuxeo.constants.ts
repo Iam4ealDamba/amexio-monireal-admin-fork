@@ -90,3 +90,5 @@ export const REST_ENDPOINTS = {
     urlType: "base"
   }
 };
+
+export const MONIREAL_ROUTE_ROOT = "monireal/";

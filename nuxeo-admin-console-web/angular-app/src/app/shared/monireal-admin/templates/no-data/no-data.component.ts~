@@ -1,7 +1,7 @@
 import {Component, Input} from "@angular/core";
 
 /**
- * A template to show when no data was found in a component
+ * A template to show when no data was found in a page
  */
 @Component({
   selector: "app-no-data",

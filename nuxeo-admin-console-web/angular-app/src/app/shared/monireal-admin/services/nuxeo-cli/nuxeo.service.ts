@@ -12,6 +12,9 @@ import {REST_ENDPOINTS} from "../../constants/nuxeo.constants";
 import {URLType} from "../../interfaces/types"
 import {environment} from "../../../../../environments/environment.development";
 
+/**
+ * Create the Nuxeo Client Service
+ */
 @Injectable()
 export class NuxeoCliService {
   private _instance: Nuxeo = {};

@@ -27,16 +27,13 @@ export class ReindexTabComponent implements OnInit {
   });
   
   flushTitle = "Flush all Elasticsearch indexes";
-  flushdescription = "This operation can take some times, are you sure to flush all ElasticSearch indexes ?";
+  flushDescription = "This operation can take some times, are you sure to flush all ElasticSearch indexes ?";
   showFlushModal = false;
   
   optimizeTitle = "Optimize all Elasticsearch indexes";
-  optimizedescription = "This operation can take some times, are you sure to optimize all ElasticSearch indexes ?";
+  optimizeDescription = "This operation can take some times, are you sure to optimize all ElasticSearch indexes ?";
   showOptimizeModal = false;
   
-  /**
-   *
-   */
   constructor(private nuxeo: NuxeoCliService, private toastr: ToastrCustomService) {
   }
   
@@ -51,6 +48,9 @@ export class ReindexTabComponent implements OnInit {
     });
   }
   
+  /**
+   * Will execute the NXQL query for ElasticSearch re-indexation
+   */
   execNXQL() {
     const search =
       (this.formGroup.get('nxql')?.value as string).length > 0
@@ -72,6 +72,9 @@ export class ReindexTabComponent implements OnInit {
       });
   }
   
+  /**
+   * Will execute the DocID query for ElasticSearch re-indexation
+   */
   execDocumentID() {
     const search =
       (this.formGroup.get('docUID')?.value as string).length > 0
@@ -99,6 +102,10 @@ export class ReindexTabComponent implements OnInit {
     }
   }
   
+  /**
+   * Will execute the Flush query for ElasticSearch re-indexation. Be ware, it will treat a lot of data,
+   * so this might take a few minutes.
+   */
   execFlush(confirm: boolean) {
     if (!confirm) this.showFlushModal = false;
     else {
@@ -108,6 +115,12 @@ export class ReindexTabComponent implements OnInit {
     }
   }
   
+  /**
+   * Will execute the Optimize query for ElasticSearch re-indexation. Be ware, it will treat a lot of data,
+   * so this might take a few minutes.
+   *
+   * @param confirm
+   */
   execOptimize(confirm: boolean) {
     if (!confirm) this.showOptimizeModal = false;
     else {

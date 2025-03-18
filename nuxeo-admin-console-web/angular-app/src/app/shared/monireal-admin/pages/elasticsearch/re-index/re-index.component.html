@@ -76,13 +76,13 @@
 </section>
 <section *ngIf="showFlushModal">
     <app-confirm-modal-component [title]="this.flushTitle"
-                                 [description]="this.flushdescription"
+                                 [description]="this.flushDescription"
                                  ($sendResponse)="this.execFlush($event)"
     ></app-confirm-modal-component>
 </section>
 <section *ngIf="showOptimizeModal">
     <app-confirm-modal-component [title]="this.optimizeTitle"
-                                 [description]="this.optimizedescription"
+                                 [description]="this.optimizeDescription"
                                  ($sendResponse)="this.execOptimize($event)"
     ></app-confirm-modal-component>
 </section>

@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {ToastrLevelType} from "../../interfaces/types";
 
 /**
- * Create the Toastr Service and deliver toastr messages
+ * Create the Toastr Serviceand deliver toastr messages
  */
 @Injectable({
   providedIn: "root"

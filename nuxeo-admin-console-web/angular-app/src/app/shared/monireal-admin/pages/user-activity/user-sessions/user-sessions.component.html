@@ -1,15 +1,7 @@
 <section class="tab-content">
-    <section label="unload-content" class="flex w-full h-full text-center items-center justify-center"
-             *ngIf="this.isLoading">
-        <div label="loading-page" class="flex items-center justify-center gap-x-6 text-center">
-            <h3 class="mb-0">Loading data</h3>
-            <div class="flex items-center justify-center w-6 h-6">
-                <mat-progress-spinner mode="indeterminate">
-                </mat-progress-spinner>
-            </div>
-        </div>
-    </section>
-    <app-no-data text="Sorry, no user sessions was retireve, please try later..." *ngIf="!this.sessions.length" class="flex-1"></app-no-data>
+    <app-loading-template-component *ngIf="this.isLoading"></app-loading-template-component>
+    <app-no-data text="Sorry, no user sessions was retireve, please try later..."
+                 *ngIf="!this.isLoading && !this.sessions.length" class="flex-1"></app-no-data>
     <section class="flex flex-col gap-y-10" *ngIf="!this.isLoading && this.sessions.length">
         <div class="space-y-8">
             <div label="title">
@@ -30,7 +22,7 @@
         <div class="space-y-8">
             <div label="top" class="flex w-full justify-between items-center">
                 <h6 class="font-semibold">All Active Sessions (1)</h6>
-                <form [formGroup]="this.formGroup" (ngSubmit)="handleSubmitSearch()" >
+                <form [formGroup]="this.formGroup" (ngSubmit)="handleSubmitSearch()">
                     <input type="search" placeholder="Search here..." formControlName="search"/>
                 </form>
             </div>

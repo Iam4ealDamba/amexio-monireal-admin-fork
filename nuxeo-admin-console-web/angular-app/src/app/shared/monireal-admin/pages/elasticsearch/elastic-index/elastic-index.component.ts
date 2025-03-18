@@ -11,6 +11,9 @@ import {DocumentDetailTemplateComponent} from "../../../templates/document-detai
 import {NgIcon} from "@ng-icons/core";
 import {MonirealButtonComponent} from "../../../components/buttons/monireal-button/monireal-button.component";
 
+/**
+ * Component for ElasticSearch indexes tab
+ */
 @Component({
   selector: 'app-elastic-tab',
   imports: [
@@ -27,9 +30,9 @@ import {MonirealButtonComponent} from "../../../components/buttons/monireal-butt
   standalone: true,
 })
 export class ElasticIndexTabComponent {
-  //
+  // ----------------
   // Variables
-  //
+  // ----------------
   title = "ElasticSearch Indexes";
   description = "Paginate through all the document index from ElasticSearch.";
   isDocumentDetailSelected: string | null = null;
@@ -41,14 +44,14 @@ export class ElasticIndexTabComponent {
     search: new FormControl(''),
   });
   
-  //
+  // ----------------
   // Events
-  //
+  // ----------------
   @Input() data: any;
   
-  //
+  // ----------------
   // Functions
-  //
+  // ----------------
   ngOnInit() {
     this.results = this.data;
   }
