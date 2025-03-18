@@ -2,6 +2,9 @@ import {ToastrConfig, ToastrService} from 'ngx-toastr';
 import {Injectable} from "@angular/core";
 import {ToastrLevelType} from "../../interfaces/types";
 
+/**
+ * Create the Toastr Service and deliver toastr messages
+ */
 @Injectable({
   providedIn: "root"
 })

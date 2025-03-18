@@ -1,0 +1,13 @@
+<section class="page-content content-wrapper">
+    <app-monireal-tabs-list-component [tabs]="tabs" [currentTab]="currentTab"
+                                      (getCurrentTab)="handleSelectedTab($event)"></app-monireal-tabs-list-component>
+
+    <app-loading-template-component *ngIf="this.isLoading"></app-loading-template-component>
+    <div *ngIf="!this.isLoading" [ngSwitch]="currentTab">
+        <app-desync-tab [$data]="this.audit" *ngSwitchCase="1"></app-desync-tab>
+        <app-repo-tab [data]="this.audit.repoSearch.results" *ngSwitchCase="2"></app-repo-tab>
+        <app-elastic-tab [data]="this.audit.elasticSearch.results" *ngSwitchCase="3"></app-elastic-tab>
+        <app-reindex-tab *ngSwitchCase="4"></app-reindex-tab>
+        <app-desync-tab [$data]="this.audit" *ngSwitchDefault></app-desync-tab>
+    </div>
+</section>

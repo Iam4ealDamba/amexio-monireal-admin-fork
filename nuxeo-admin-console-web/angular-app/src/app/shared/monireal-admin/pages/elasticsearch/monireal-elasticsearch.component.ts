@@ -8,6 +8,7 @@ import {RepoIndexTabComponent} from "./repo-index/repo-index.component";
 import {ElasticIndexTabComponent} from "./elastic-index/elastic-index.component";
 import {ReindexTabComponent} from "./re-index/re-index.component";
 import {MonirealTabsListComponent} from "../../components/tabs-list/tabs-list.component";
+import {LoadingTemplateComponent} from "../../templates/loading/loading.component";
 
 @Component({
   selector: "moni-real-user-activity-page",
@@ -20,7 +21,8 @@ import {MonirealTabsListComponent} from "../../components/tabs-list/tabs-list.co
     RepoIndexTabComponent,
     ElasticIndexTabComponent,
     ReindexTabComponent,
-    MonirealTabsListComponent
+    MonirealTabsListComponent,
+    LoadingTemplateComponent
   ],
   providers: [NuxeoCliService]
 })

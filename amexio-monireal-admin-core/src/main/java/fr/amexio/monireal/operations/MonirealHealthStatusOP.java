@@ -3,7 +3,9 @@ package fr.amexio.monireal.operations;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -34,8 +36,15 @@ public class MonirealHealthStatusOP {
   protected CoreSession session;
 
   @Context
+  protected OperationContext ctx;
+
+  @Context
   protected ProbeManager manager;
 
+  /**
+   * Fetch the probe list
+   * @return List of ProbeInfo, and return null if an error is caught.
+   */
   protected List<ProbeInfo> getAllProbes() {
     try {
       return new ArrayList<>(manager.getAllProbeInfos());
@@ -45,10 +54,18 @@ public class MonirealHealthStatusOP {
     }
   }
 
+  /**
+   * Checks the status of a given probe.
+   *
+   * @param probe The probe to be checked.
+   * @return The updated ProbeInfo after executing the probe, or null if an error occurs.
+   */
   protected ProbeInfo checkProbe(ProbeInfo probe) {
     try {
+      // Run the probe using the ProbeManager and return the result
       return manager.runProbe(probe);
     } catch (Exception e) {
+      // Log the stack trace for debugging purposes and return null
       e.fillInStackTrace();
       return null;
     }
@@ -56,6 +73,9 @@ public class MonirealHealthStatusOP {
 
   @OperationMethod
   public Blob run() throws IOException, URISyntaxException, InterruptedException {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     List<ProbeInfo> probes = getAllProbes();
     List<ProbeInfo> result = new ArrayList<>();
 

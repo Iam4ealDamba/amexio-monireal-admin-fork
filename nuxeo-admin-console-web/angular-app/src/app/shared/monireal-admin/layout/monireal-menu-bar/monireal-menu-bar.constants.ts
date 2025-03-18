@@ -1,3 +1,5 @@
+import {MONIREAL_ROUTE_ROOT} from "../../constants/nuxeo.constants";
+
 export interface MoniMenu {
   id: number;
   name: string;
@@ -9,19 +11,19 @@ export const MONI_ADMIN_MENU: MoniMenu[] = [
   {
     id: 0,
     name: "User Activities",
-    path: "user-activities",
+    path: MONIREAL_ROUTE_ROOT + "user-activities",
     isSelected: false,
   },
   {
     id: 1,
     name: "Monitoring",
-    path: "monitoring",
+    path: MONIREAL_ROUTE_ROOT + "monitoring",
     isSelected: false,
   },
   {
     id: 2,
     name: "ElasticSearch",
-    path: "elasticsearch",
+    path: MONIREAL_ROUTE_ROOT + "elasticsearch",
     isSelected: false,
   },
 ];

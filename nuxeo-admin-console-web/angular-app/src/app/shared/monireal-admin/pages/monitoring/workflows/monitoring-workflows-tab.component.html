@@ -1,4 +1,5 @@
-<section *ngIf="!this.selectedTask.length" class="content">
+<app-loading-template-component *ngIf="this.isLoading"></app-loading-template-component>
+<section *ngIf="!this.isLoading && !this.selectedTask.length" class="content">
     <app-no-data *ngIf="!this.taskList.length"
                  text="Sorry, no opened task were retireve, please try later..."></app-no-data>
     <section *ngIf="this.taskList.length" class="flex justify-between items-center mt-4">
@@ -125,12 +126,12 @@
     ></app-workflow-delegation-modal>
 </section>
 <section>
-    <app-task-detail-template-component *ngIf="this.selectedTask.length" [title]="this.pageTitle"
+    <app-task-detail-template-component *ngIf="!this.isLoading && this.selectedTask.length" [title]="this.pageTitle"
                                         [description]="this.pageDetails"
                                         [documentID]="this.selectedTask"
                                         ($emitHideTemplate)="this.handleHideTaskDetail($event)"></app-task-detail-template-component>
 </section>
-<section *ngIf="showCancelModal">
+<section *ngIf="!this.isLoading && showCancelModal">
     <app-confirm-modal-component [title]="this.cancelTitle"
                                  [description]="this.canceldescription"
                                  ($sendResponse)="this.execCancellation($event)"

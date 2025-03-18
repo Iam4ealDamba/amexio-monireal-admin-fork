@@ -21,6 +21,9 @@ import org.nuxeo.runtime.api.Framework;
 
 import javax.inject.Inject;
 
+/**
+ * Retrieve ElasticSearch indexes state.
+ */
 @Operation(id = MonirealElasticIndexStateOP.ID, category = MonirealConstants.MONIREAL, label = "ElasticSearch Index State", description = "Retrieve ElasticSearch indexes state.")
 public class MonirealElasticIndexStateOP {
   public static final String ID = MonirealConstants.MONIREAL + ".getElasticIndexState";
@@ -57,6 +60,7 @@ public class MonirealElasticIndexStateOP {
   public Blob run() throws Exception {
     AuthAccessUtils.checkAccess(ctx);
     // Retrieve elasticsearch indexes state as json
+
     JSONObject json = getNodesInfo();
     return new JSONBlob(json.toString());
   }

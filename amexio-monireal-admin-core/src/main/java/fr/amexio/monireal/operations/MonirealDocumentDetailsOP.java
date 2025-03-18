@@ -23,18 +23,20 @@ import java.util.List;
  */
 @Operation(id = MonirealDocumentDetailsOP.ID, category = MonirealConstants.MONIREAL, label = "Document Details", description = "Fetch details from a document with a given ID.")
 public class MonirealDocumentDetailsOP {
-
+  /**
+   * Request Identifier
+   */
   public static final String ID = MonirealConstants.MONIREAL + ".documentDetails";
 
   @Context
   protected CoreSession session;
 
-  @Param(name = "docID", required = true, values = StringUtils.EMPTY)
+  @Param(name = "docID", required = true, values = StringUtils.EMPTY, description = "The document ID")
   protected String docID;
 
   @OperationMethod
   public Blob run() {
-    JSONObject json = new JSONObject();
+    JSONObject result = new JSONObject();
     String query = MonirealConstants.DEFAULT_NXQL_QUERY + " WHERE ecm:uuid = '" + docID + "'";
     DocumentModelList list = session.query(query);
 
@@ -44,31 +46,32 @@ public class MonirealDocumentDetailsOP {
         GregorianCalendar createdCalendar = (GregorianCalendar) doc.getPropertyValue("dc:created");
         GregorianCalendar modifiedCalendar = (GregorianCalendar) doc.getPropertyValue("dc:modified");
 
-        JSONObject map = new JSONObject();
-        map.put("id", doc.getId());
-        map.put("type", doc.getType());
-        map.put("title", doc.getTitle());
-        map.put("path", doc.getPathAsString());
-        map.put("state", doc.getCurrentLifeCycleState());
-        map.put("repository", doc.getRepositoryName());
-        map.put("created", createdCalendar.getTimeInMillis());
-        map.put("modified", modifiedCalendar.getTimeInMillis());
-        map.put("creator", doc.getPropertyValue("dc:creator"));
-        map.put("contributors", doc.getPropertyValue("dc:contributors"));
+        // Insert into obj object
+        JSONObject obj = new JSONObject();
+        obj.put("id", doc.getId());
+        obj.put("type", doc.getType());
+        obj.put("title", doc.getTitle());
+        obj.put("path", doc.getPathAsString());
+        obj.put("state", doc.getCurrentLifeCycleState());
+        obj.put("repository", doc.getRepositoryName());
+        obj.put("created", createdCalendar.getTimeInMillis());
+        obj.put("modified", modifiedCalendar.getTimeInMillis());
+        obj.put("creator", doc.getPropertyValue("dc:creator"));
+        obj.put("contributors", doc.getPropertyValue("dc:contributors"));
 
-        // Insert into json object
-        json.put("status", "success");
-        json.put("msg", "Request was successfully executed.");
-        json.put("data", map);
+        // Insert into result object
+        result.put("status", "success");
+        result.put("msg", "Request was successfully executed.");
+        result.put("data", obj);
       } else {
-        json.put("status", "error");
-        json.put("msg", "docID not found");
+        result.put("status", "error");
+        result.put("msg", "docID not found");
       }
     } else {
-      json.put("status", "error");
-      json.put("msg", "docID is required");
+      result.put("status", "error");
+      result.put("msg", "docID is required");
     }
 
-    return new JSONBlob(json.toString());
+    return new JSONBlob(result.toString());
   }
 }

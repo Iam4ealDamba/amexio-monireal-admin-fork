@@ -1,8 +1,9 @@
 # Liens Utiles
 ---
 
-Dans le but d'avoir le plus d'informations sur l'utilisation de Nuxeo, les différentes fonctionnalités mis à dispositions par la plateforme ainsi que le code source des bundles servant de références, voici ci-dessous une liste de liens utiles à utilisés:
+Dans le but d'avoir le plus d'informations sur l'utilisation de Nuxeo, les différentes fonctionnalités mis à dispositions par la plateforme ainsi que le code source des bundles servant de références, voici ci-dessous une liste de liens utiles à utilisés.
 
+### Liste des liens utiles: 
 - <a href="https://doc.nuxeo.com/nxdoc/installation/">Installation de Nuxeo LTS</a>
 
 - <a href="https://doc.nuxeo.com/nxdoc/compatibility-matrix/">Details services LTS</a>
@@ -41,7 +42,7 @@ Dans le but d'avoir le plus d'informations sur l'utilisation de Nuxeo, les diff�
 
 - <a href="https://github.com/nuxeo/nuxeo-jsf-ui">Github - Nuxeo JSF UI</a>
 
-- <a href="https://github.com/nuxeo/nuxeo-admin-console-uii">Github - Nuxeo Admin COnsole</a>
+- <a href="https://github.com/nuxeo/nuxeo-admin-console-uii">Github - Nuxeo Admin Console</a>
 
 - <a href="https://github.com/nuxeo/nuxeo">Github - Nuxeo</a>
 

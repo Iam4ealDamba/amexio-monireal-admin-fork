@@ -8,6 +8,9 @@ import {
 import {ChartConfiguration} from 'chart.js';
 import {NgChartsModule} from "ng2-charts";
 
+/**
+ * Component for desync tab from ElasticSearch indexes
+ */
 @Component({
   selector: 'app-desync-tab',
   imports: [NgxPaginationModule, CommonModule, NgChartsModule],
@@ -34,6 +37,9 @@ export class DesyncTabComponent implements OnChanges {
     }
   }
   
+  /**
+   * Fetch indexes from Repository and ElasticSearch
+   */
   loadData() {
     this.repository = this.$data?.repoSearch as ElasticSearchAuditResultInterface;
     this.elasticSearch = this.$data?.elasticSearch as ElasticSearchAuditResultInterface;
@@ -41,6 +47,14 @@ export class DesyncTabComponent implements OnChanges {
   }
   
   
+  /**
+   * Set up data for chart
+   *
+   * This function will generate the data for two bar charts. The first chart
+   * will display the time it took for each index to be searched, in milliseconds.
+   * The second chart will display the number of indexes found in each search.
+   *
+   */
   setupChartData() {
     this.timeChartData = {
       labels: ['In millisecond (ms)'],
@@ -72,9 +86,5 @@ export class DesyncTabComponent implements OnChanges {
         },
       ],
     };
-  }
-  
-  pageChanged(e: number) {
-    this.currentPage = e;
   }
 }

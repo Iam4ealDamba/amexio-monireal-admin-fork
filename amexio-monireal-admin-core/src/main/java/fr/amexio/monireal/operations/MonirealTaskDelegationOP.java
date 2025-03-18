@@ -1,10 +1,12 @@
 package fr.amexio.monireal.operations;
 
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -31,16 +33,22 @@ public class MonirealTaskDelegationOP {
   protected CoreSession session;
 
   @Context
+  protected OperationContext ctx;
+
+  @Context
   protected DocumentRoutingService routingService;
 
-  @Param(name = "taskID", required = true)
+  @Param(name = "taskID", required = true, description = "The task ID string/array")
   protected String taskID;
 
-  @Param(name = "reviewerID", required = true)
+  @Param(name = "reviewerID", required = true, description = "The reviewer ID string/array")
   protected String reviewerID;
 
   @OperationMethod
   public Blob run() {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     JSONObject json = new JSONObject();
     DocumentModel workflowInstance;
     List<DocumentModel> listTask = new ArrayList<>();

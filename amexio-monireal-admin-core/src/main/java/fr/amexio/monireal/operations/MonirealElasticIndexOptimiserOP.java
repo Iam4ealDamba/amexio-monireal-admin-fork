@@ -21,7 +21,7 @@ import org.nuxeo.elasticsearch.api.ElasticSearchAdmin;
 import java.util.Optional;
 
 /**
- *
+ * This request allows the optimization of all Elasticsearch indexes.
  */
 @Operation(id = MonirealElasticIndexOptimiserOP.ID, category = MonirealConstants.MONIREAL, label = "ElasticSearch Index Optimiser", description = "This request allows the optimization of all Elasticsearch indexes.")
 public class MonirealElasticIndexOptimiserOP {

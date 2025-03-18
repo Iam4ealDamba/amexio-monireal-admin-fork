@@ -12,13 +12,14 @@ import {WorkflowDelegationModalComponent} from "./workflow-delegation/workflow-d
 import {MonirealButtonComponent} from "../../../components/buttons/monireal-button/monireal-button.component";
 import {TaskDetailTemplateComponent} from "../../../templates/task-detail/task-detail.component";
 import {ConfirmModalComponent} from "../../../components/modals/confirmation/confirm-modal.component";
+import {LoadingTemplateComponent} from "../../../templates/loading/loading.component";
 
 @Component({
   selector: 'app-monitoring-workflows',
   templateUrl: './monitoring-workflows-tab.component.html',
   styleUrls: ['./monitoring-workflows-tab.component.scss'],
   standalone: true,
-  imports: [CommonModule, NgIconComponent, NgxPaginationModule, ReactiveFormsModule, NoDataComponent, WorkflowDelegationModalComponent, MonirealButtonComponent, TaskDetailTemplateComponent, ConfirmModalComponent]
+  imports: [CommonModule, NgIconComponent, NgxPaginationModule, ReactiveFormsModule, NoDataComponent, WorkflowDelegationModalComponent, MonirealButtonComponent, TaskDetailTemplateComponent, ConfirmModalComponent, LoadingTemplateComponent]
 })
 export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
   // -----------------------------------
@@ -82,6 +83,7 @@ export class MonitoringWorkflowsTabComponent implements OnInit, OnChanges {
         this.taskList[i].state = this.handleDueDateIcon(this.taskList[i].dueDate);
       }
       this.currentTaskList = this.taskList;
+      this.isLoading = false;
     });
   }
   

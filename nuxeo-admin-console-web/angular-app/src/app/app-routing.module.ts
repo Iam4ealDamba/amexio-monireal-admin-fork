@@ -62,7 +62,7 @@ export const appRoutes: Route[] = [
         "./features/sub-features/generic-multi-feature-layout/generic-multi-feature-layout.module"
       ).then((m) => m.GenericMultiFeatureLayoutModule),
   },
-  // Add Monireal routes here
+  // This is required for the monireal module
   ...monirealRoutes,
   { path: "**", redirectTo: "" },
 ];

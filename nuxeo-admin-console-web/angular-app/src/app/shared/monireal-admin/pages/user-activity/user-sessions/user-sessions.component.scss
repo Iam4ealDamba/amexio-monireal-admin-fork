@@ -1,6 +1,8 @@
 @import "../../../styles/monireal-style.scss";
 
 .tab-content {
+  @apply h-full;
+
   h1 {
     @apply text-xl font-bold;
   }

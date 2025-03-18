@@ -1,16 +1,11 @@
 <section class="page-content content-wrapper">
-    <!--    <div aria-label="tabs" class="tabs">-->
-    <!--        <div-->
-    <!--                *ngFor="let item of tabs"-->
-    <!--                aria-label="tab content"-->
-    <!--                class="tab-content {{ currentTab === item.id ? 'tab-active' : '' }}"-->
-    <!--        >-->
-    <!--            <button (click)="handleSelectedTab(item.id)">{{ item.name }}</button>-->
-    <!--        </div>-->
-    <!--    </div>-->
     <app-monireal-tabs-list-component [tabs]="tabs" [currentTab]="currentTab"
                                       (getCurrentTab)="handleSelectedTab($event)"></app-monireal-tabs-list-component>
-    <div [ngSwitch]="currentTab">
+
+    <section class="h-full">
+        <app-loading-template-component *ngIf="this.isLoading"></app-loading-template-component>
+    </section>
+    <div *ngIf="!this.isLoading" [ngSwitch]="currentTab">
         <app-desync-tab [$data]="this.audit" *ngSwitchCase="1"></app-desync-tab>
         <app-repo-tab [data]="this.audit.repoSearch.results" *ngSwitchCase="2"></app-repo-tab>
         <app-elastic-tab [data]="this.audit.elasticSearch.results" *ngSwitchCase="3"></app-elastic-tab>

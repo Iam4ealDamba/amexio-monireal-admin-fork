@@ -12,6 +12,9 @@ import {
   MonirealLinkButtonComponent
 } from "../../components/buttons/monireal-link-button/monireal-link-button.component";
 
+/**
+ * Template of a document detail
+ */
 @Component({
   selector: "app-document-detail-template-component",
   templateUrl: "./document-detail.component.html",
@@ -56,6 +59,9 @@ export class DocumentDetailTemplateComponent implements OnInit {
   // Functions
   //---------------------------
   
+  /**
+   * Fetch the document detail
+   */
   fetchDocument() {
     if (this.documentID.length) {
       try {

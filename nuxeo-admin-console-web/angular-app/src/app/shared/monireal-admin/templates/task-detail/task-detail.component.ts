@@ -12,6 +12,9 @@ import {
   MonirealLinkButtonComponent
 } from "../../components/buttons/monireal-link-button/monireal-link-button.component";
 
+/**
+ * Task detail template component
+ */
 @Component({
   selector: "app-task-detail-template-component",
   templateUrl: "./task-detail.component.html",
@@ -49,14 +52,17 @@ export class TaskDetailTemplateComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.fetchDocument();
+    this.fetchTask();
   }
   
   //---------------------------
   // Functions
   //---------------------------
   
-  fetchDocument() {
+  /**
+   * Fetch the detail of a task
+   */
+  fetchTask() {
     if (this.documentID.length) {
       try {
         this.nuxeo.exec("WORKFLOW_TASK_DETAIL", {

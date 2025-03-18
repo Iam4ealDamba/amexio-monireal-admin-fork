@@ -6,6 +6,9 @@ import {MonirealButtonComponent} from "../components/buttons/monireal-button/mon
 import {MonirealLinkButtonComponent} from "../components/buttons/monireal-link-button/monireal-link-button.component";
 import {MonirealTabsListComponent} from "../components/tabs-list/tabs-list.component";
 
+/**
+ * This module is used to import all the default modules used by AmeXio Monireal Admin project
+ */
 export const MonirealModuleComponent: any[] = [
   // Components
   IconDefaultComponent,

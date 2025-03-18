@@ -1,7 +1,9 @@
 package fr.amexio.monireal.operations;
 
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -27,10 +29,16 @@ public class MonirealTaskListOP {
   protected CoreSession session;
 
   @Context
+  protected OperationContext ctx;
+
+  @Context
   protected TaskService taskService;
 
   @OperationMethod
   public Blob run() {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     String query = MonirealConstants.DEFAULT_NXQL_TASK_LIST;
     DocumentModelList list = session.query(query);
     List<JSONObject> results = new ArrayList<>();

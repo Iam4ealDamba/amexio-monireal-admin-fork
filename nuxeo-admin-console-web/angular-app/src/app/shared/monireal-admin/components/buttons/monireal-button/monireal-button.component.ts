@@ -2,6 +2,9 @@ import {Component, Input} from '@angular/core';
 import {IconType, NgIconComponent} from "@ng-icons/core";
 import {CommonModule} from "@angular/common";
 
+/**
+ * A customized button made with TailwindCSS and NgIcons
+ */
 @Component({
   selector: "app-monireal-button-component",
   templateUrl: "./monireal-button.component.html",
@@ -15,11 +18,12 @@ export class MonirealButtonComponent {
   //---------------------------
   @Input({required: true}) title = "";
   @Input() buttonStyle: 'button-regular' | 'button-primary' | 'button-inactive' = "button-regular";
-  @Input() type: "submit" | "reset" | "button"  = "button";
+  @Input() type: "submit" | "reset" | "button" = "button";
   @Input() icon = "";
   @Input() disabled = false;
   
   //---------------------------
   // Constructor
- 
+  // --------------------------
+  
 }

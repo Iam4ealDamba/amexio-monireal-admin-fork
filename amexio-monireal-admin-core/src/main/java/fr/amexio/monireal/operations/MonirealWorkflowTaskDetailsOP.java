@@ -1,8 +1,10 @@
 package fr.amexio.monireal.operations;
 
 import fr.amexio.monireal.constants.MonirealConstants;
+import fr.amexio.monireal.utils.AuthAccessUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.json.JSONObject;
+import org.nuxeo.ecm.automation.OperationContext;
 import org.nuxeo.ecm.automation.core.annotations.Context;
 import org.nuxeo.ecm.automation.core.annotations.Operation;
 import org.nuxeo.ecm.automation.core.annotations.OperationMethod;
@@ -21,16 +23,22 @@ import java.util.GregorianCalendar;
 @Operation(id = MonirealWorkflowTaskDetailsOP.ID, category = MonirealConstants.MONIREAL, label = "WorkflowTaskDetails", description = "Fetch details from a task with a given ID.")
 public class MonirealWorkflowTaskDetailsOP {
 
-  public static final String ID = MonirealConstants.MONIREAL + ".WorkflowTaskDetails";
+  public static final String ID = MonirealConstants.MONIREAL + ".workflowTaskDetails";
 
   @Context
   protected CoreSession session;
 
-  @Param(name = "docID", required = true, values = StringUtils.EMPTY)
+  @Context
+  protected OperationContext ctx;
+
+  @Param(name = "docID", required = true, values = StringUtils.EMPTY, description = "The document ID")
   protected String docID;
 
   @OperationMethod
   public Blob run() {
+    // Verify if the user has right access
+    AuthAccessUtils.checkAccess(ctx);
+
     JSONObject json = new JSONObject();
     String query = MonirealConstants.DEFAULT_NXQL_TASK_DETAIL + "'" + docID + "'";
     DocumentModelList list = session.query(query);

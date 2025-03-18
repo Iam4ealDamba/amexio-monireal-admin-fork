@@ -16,7 +16,9 @@ import org.nuxeo.elasticsearch.api.ElasticSearchAdmin;
  */
 @Operation(id = MonirealElasticIndexesFlushOP.ID, category = MonirealConstants.MONIREAL, label = "Elastic Indexes Flush", description = "This request flushes all the ElasticSearch indexes")
 public class MonirealElasticIndexesFlushOP {
-
+  /**
+   * Request Identifier
+   */
   public static final String ID = MonirealConstants.MONIREAL + ".elasticIndexesFlush";
 
   @Context
@@ -40,7 +42,7 @@ public class MonirealElasticIndexesFlushOP {
     // Verify if the user has right access
     AuthAccessUtils.checkAccess(ctx);
 
-    JSONObject json = flushIndexes();
-    return new JSONBlob(json.toString());
+    JSONObject result = flushIndexes();
+    return new JSONBlob(result.toString());
   }
 }
