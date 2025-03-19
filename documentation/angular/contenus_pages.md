@@ -20,7 +20,7 @@ Nous verrons ici une explication du contenue des pages disponibles ajoutés par 
 
    | Nom onglet | Détails onglet                                               |
    | :--------- | ------------------------------------------------------------ |
-   | Workflows  | Cet onglet permets de récupérer toutes les tâches de Workflows de l'application avec plusieurs détails (nom workflow, nom tâche, initiateur, dernière modification, date échéance, statut). Il est également possible de déléguer les tache ainsi que d'en annuler plusieurs. |
+   | Workflows  | Cet onglet permets de récupérer toutes les tâches de Workflows de l'application avec plusieurs détails (nom workflow, nom tâche, initiateur, dernière modification, date échéance, statut). Il est également possible de déléguer les tache à une liste d'utilisateur sélectionnés via une modal. Nous aurons aussi la possibilité de supprimé une ou plusieurs tâches. Aussi, en cliquant sur une des tâches, nous pourrons consulter son détail. |
 
    
 
@@ -33,4 +33,5 @@ Nous verrons ici une explication du contenue des pages disponibles ajoutés par 
    | Desync Infos          | Cet onglet permets de voir la désynchronisation des indexes entre le Repository Search et ElasticSearch. Sur cette page, la différence entre les deux est représenter part un graphique de temps pris pour la requête et un autre graphique pour montrer le nombre d'indexes récupérer. |
    | Repository Indexes    | Cet onglet permet de récupérer les indexes du Repository Search afin de pouvoir les chercher individuellement. Une page de détail est également disponible en cliquant sur l'un des indexes dans la liste de recherche. |
    | ElasticSearch Indexes | Cet onglet permet de récupérer les indexes d'ElasticSearch afin de pouvoir les chercher individuellement. Une page de détail est également disponible en cliquant sur l'un des indexes dans la liste de recherche. (A savoir que la recherche est limité aux 1000 premier indexes recherchés pour ElasticSearch) |
-   | Re-Indexation         | Cet onglet permet d'effectuer plusieurs requête de re-indexation coté ElasticSearch (Re-index by NXQL Re-index by Query, Flush Indexes, Optimize Indexes) |
+   | Re-Indexation         | Cet onglet permet d'effectuer plusieurs requête de re-indexation coté ElasticSearch (Re-index by NXQL Re-index by Query, Flush Indexes, Optimize Indexes). Une modal apparaitra pour les requête d'optimisation et ce supprimé pour voir demander de valider ses modificateur |
+

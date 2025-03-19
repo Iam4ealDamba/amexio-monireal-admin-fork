@@ -2,7 +2,7 @@
 
 ---
 Ici, nous allons expliquer comment créer les fichiers de configuration pour Monireal Admin.
-Dans un premier temps , nous voulons verifier que nous avons bien les fichier "environment.ts" et "environment.devlopment.ts" dans le chemin ci-dessous:
+Dans un premier temps , nous voulons vérifier que nous avons bien les fichier "environment.ts" et "environment.devlopment.ts" dans le chemin ci-dessous:
 
 ```bash
 # Chemin local vers le fichier d'environnement
@@ -16,7 +16,7 @@ Si vous avez pas ces deux fichiers, vous pouvez les créer en utilisant la comma
 ng g environment
 ```
 
-Une fois le fichier d'environnement créer, nous pourrons le completer avec les informations ci-dessous:
+Une fois le fichier d'environnement créer, nous pourrons le compléter avec les informations ci-dessous:
 
 ```typescript
 export const environment = {
